@@ -35,7 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.227451, 0.227451, 0.227451, 1)
 
-[node name="Button" type="Button" parent="."]
+[node name="StartGame" type="Button" parent="."]
 layout_mode = 0
 offset_left = 109.0
 offset_top = 18.0
@@ -54,6 +54,10 @@ text = "Exit
 "
 
 [node name="Main" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="Main"]
+unique_name_in_owner = true
 position = Vector2(160, 90)
+
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
