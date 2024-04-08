@@ -13,9 +13,12 @@ script = ExtResource("1_26uua")
 
 [node name="HUD" type="Control" parent="."]
 unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Menu" type="Control" parent="."]
 unique_name_in_owner = true
@@ -35,21 +38,21 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.227451, 0.227451, 0.227451, 1)
 
-[node name="StartGame" type="Button" parent="."]
+[node name="StartGame" type="Button" parent="Menu"]
 layout_mode = 0
-offset_left = 109.0
-offset_top = 18.0
-offset_right = 191.0
-offset_bottom = 49.0
+offset_left = 280.0
+offset_top = 88.0
+offset_right = 362.0
+offset_bottom = 119.0
 text = "PLAY
 "
 
-[node name="Button2" type="Button" parent="."]
+[node name="Button2" type="Button" parent="Menu"]
 layout_mode = 0
-offset_left = 105.0
-offset_top = 81.0
-offset_right = 200.0
-offset_bottom = 112.0
+offset_left = 275.0
+offset_top = 224.0
+offset_right = 370.0
+offset_bottom = 255.0
 text = "Exit
 "
 
@@ -58,6 +61,6 @@ unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="Main"]
 unique_name_in_owner = true
-position = Vector2(160, 90)
+position = Vector2(320, 180)
 
-[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Menu/StartGame" to="." method="_on_start_game_pressed"]
