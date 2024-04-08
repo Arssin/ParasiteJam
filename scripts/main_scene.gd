@@ -8,6 +8,13 @@ extends Control
 
 var level_instance
 
+func _ready() -> void:
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
 
 func unload_level():
 	if (is_instance_valid(level_instance)):
@@ -23,13 +30,6 @@ func load_level(level_name: String):
 		level_instance = level_resource.instantiate()
 		%Main.add_child(level_instance)
 
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 
 func _on_start_game_pressed() -> void:

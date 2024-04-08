@@ -1,6 +1,6 @@
+extends Node
 
-
-@export var player_mind_controlling := false:
+@export var player_mind_controlling = false:
 	get:
 		return player_mind_controlling
 	set(value):
