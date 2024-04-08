@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://nqkcepm4sjb1"]
+[gd_scene load_steps=8 format=3 uid="uid://nqkcepm4sjb1"]
 
 [ext_resource type="Texture2D" uid="uid://bb4hix8x7d8wo" path="res://assets/MapPrototype.png" id="1_t4ppf"]
 [ext_resource type="PackedScene" uid="uid://ulroyeuyk226" path="res://characters/player.tscn" id="2_qoi3o"]
+[ext_resource type="PackedScene" uid="uid://ovaevhdhmgd4" path="res://characters/marines.tscn" id="3_r1udf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p568i"]
 texture = ExtResource("1_t4ppf")
@@ -143,3 +144,6 @@ layer_0/tile_data = PackedInt32Array(131078, 327680, 3)
 
 [node name="Player" parent="." instance=ExtResource("2_qoi3o")]
 position = Vector2(85, 229)
+
+[node name="Marines" parent="." instance=ExtResource("3_r1udf")]
+position = Vector2(169, 220)
