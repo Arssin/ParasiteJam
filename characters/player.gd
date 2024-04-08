@@ -16,15 +16,24 @@ func _process(delta: float) -> void:
 	var position_mouse_x = get_global_mouse_position().x
 	
 	if Input.is_action_just_pressed("left_mouse"):
-		shoot(projectile)
+		shoot()
 	
 	move_and_slide()
 
-func shoot(projectile):
-	var bullet = projectile.instantiate()
-	bullet.position = $".".global_position
-	bullet.direction = global_position.direction_to(get_global_mouse_position())
-	add_child(bullet)
+func shoot():
+	var mouse_position = get_global_mouse_position()
+	var direction = (mouse_position - global_position).normalized()
+	velocity = direction * player_speed
+
+	#while true:
+		#var move_and_collide_result = move_and_collide(velocity)
+		#if move_and_collide_result:
+			#if move_and_collide_result.collider:
+				#break
+	#var bullet = projectile.instantiate()
+	#bullet.position = $".".global_position
+	#bullet.direction = global_position.direction_to(get_global_mouse_position())
+	#add_child(bullet)
 
 func _input(_event: InputEvent) -> void:
 	var input_direction = Input.get_vector("move_left", "move_right","move_up", "move_down")
