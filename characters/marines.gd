@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Enemy
 
-var player_speed = 20
+var player_speed = 40
 
 var isMindControl = false
 

@@ -51,3 +51,4 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		body_controlling = true
 		mouse_clicked = false
 		body.isMindControl = true
+		$".".visible = false
