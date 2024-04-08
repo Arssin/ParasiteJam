@@ -9,11 +9,11 @@ height = 16.0
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(1.2, 1.2)
+collision_layer = 2
+collision_mask = 21
 script = ExtResource("1_ja8v1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-light_mask = 2
-visibility_layer = 13
 position = Vector2(0.205, 1.315)
 rotation = 1.5708
 scale = Vector2(0.76, 0.76)

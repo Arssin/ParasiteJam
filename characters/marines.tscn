@@ -8,9 +8,10 @@ radius = 5.0
 height = 16.0
 
 [node name="Marines" type="CharacterBody2D"]
-light_mask = 4
-visibility_layer = 3
+light_mask = 0
 scale = Vector2(1.6, 1.6)
+collision_layer = 4
+collision_mask = 11
 script = ExtResource("1_xbd00")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

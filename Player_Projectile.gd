@@ -27,4 +27,5 @@ func _on_timer_timeout() -> void:
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is Enemy:
-		pass
+		body.isMindControl = true
+		queue_free()
