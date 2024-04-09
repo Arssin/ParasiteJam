@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 class_name Enemy
 
-var player_speed = 40
+var player_speed = 60
+var isNpcControlled = false
 
 
 func _ready() -> void:
@@ -10,15 +11,24 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Global.player_mind_controlling:
+	if isNpcControlled:
 		move_and_slide()
 
 
 func _input(_event: InputEvent) -> void:
-	if Global.player_mind_controlling:
+	if isNpcControlled:
 		var input_direction = Input.get_vector("move_left", "move_right","move_up", "move_down")
 		
 		if input_direction:
 			velocity = input_direction * player_speed
 		else:
 			velocity = input_direction * 0
+
+
+func _on_mind_control_timeout() -> void:
+	isNpcControlled = false
+	Global.player_mind_controlling = false
+	$mind_control.stop()
+	
+func start_mind_control() -> void:
+	$mind_control.start()

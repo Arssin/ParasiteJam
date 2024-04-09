@@ -10,7 +10,7 @@ var body_controlling = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	Global.player_mind_controlling_stop.connect(_on_stop_controlling)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,5 +50,10 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		Global.player_mind_controlling = true
 		mouse_clicked = false
-		body.isMindControl = true
+		body.isNpcControlled = true
+		body.start_mind_control()
 		$".".visible = false
+		
+func _on_stop_controlling():
+	$".".visible = true
+	

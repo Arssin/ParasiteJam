@@ -26,3 +26,5 @@ vframes = 5
 
 [node name="mind_control" type="Timer" parent="."]
 wait_time = 5.0
+
+[connection signal="timeout" from="mind_control" to="." method="_on_mind_control_timeout"]
