@@ -38,9 +38,9 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-
-	#if is_rotating:
-		#rotation = rot_start + sin(Time.get_ticks_msec()/1000. * rotation_speed) * deg_to_rad(rotation_angle/2.)
+	
+	if is_rotating:
+		%VisionCone2D.rotation = rot_start + sin(Time.get_ticks_msec()/1000. * rotation_speed) * deg_to_rad(rotation_angle/2.)
 	if move_on_path && !chase_player && !isNpcControlled && !isReturning:
 		move_on_path.progress += movement_speed
 		global_position = move_on_path.position
@@ -55,6 +55,8 @@ func _physics_process(delta: float) -> void:
 			move_and_collide(velocity * delta)
 
 	if chase_player && !isReturning:
+		#var direction_to_player = (player.global_position - global_position).normalized()
+		#%VisionCone2D.rotation = atan2(direction_to_player.y, direction_to_player.x)
 		velocity = (player.position - position).normalized() * enemy_speed
 		move_and_collide(velocity * delta)
 		positionToReturn = move_on_path.position

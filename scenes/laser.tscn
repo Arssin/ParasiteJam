@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://clrte50v5ertq"]
+
+[ext_resource type="Texture2D" uid="uid://bb4hix8x7d8wo" path="res://assets/MapPrototype.png" id="1_8aa40"]
+
+[node name="laser" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3.1, -0.499999)
+scale = Vector2(2, 1.939)
+texture = ExtResource("1_8aa40")
+hframes = 8
+vframes = 8
+frame = 31
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://nqkcepm4sjb1"]
+[gd_scene load_steps=10 format=3 uid="uid://nqkcepm4sjb1"]
 
 [ext_resource type="Texture2D" uid="uid://bb4hix8x7d8wo" path="res://assets/MapPrototype.png" id="1_t4ppf"]
 [ext_resource type="PackedScene" uid="uid://ulroyeuyk226" path="res://characters/player.tscn" id="2_qoi3o"]
 [ext_resource type="PackedScene" uid="uid://ovaevhdhmgd4" path="res://characters/marines.tscn" id="3_r1udf"]
+[ext_resource type="PackedScene" uid="uid://clrte50v5ertq" path="res://scenes/laser.tscn" id="4_bee40"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p568i"]
 texture = ExtResource("1_t4ppf")
@@ -149,7 +150,7 @@ layer_0/z_index = 1
 layer_0/tile_data = PackedInt32Array(131078, 327680, 3)
 
 [node name="Player" parent="." instance=ExtResource("2_qoi3o")]
-position = Vector2(85, 229)
+position = Vector2(326, 250)
 
 [node name="Marines" parent="." node_paths=PackedStringArray("move_on_path") instance=ExtResource("3_r1udf")]
 position = Vector2(467, 249)
@@ -165,3 +166,6 @@ curve = SubResource("Curve2D_kp7dq")
 [node name="PathFollow2D" type="PathFollow2D" parent="Patrol"]
 position = Vector2(434, 178)
 rotation = -0.136821
+
+[node name="laser" parent="." instance=ExtResource("4_bee40")]
+position = Vector2(324, 337)
