@@ -16,7 +16,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if mouse_clicked && !Global.player_mind_controlling:
-		velocity = shooted_pos * player_speed
+		velocity = shooted_pos * 200
 	
 	move_and_slide()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://nqkcepm4sjb1"]
+[gd_scene load_steps=9 format=3 uid="uid://nqkcepm4sjb1"]
 
 [ext_resource type="Texture2D" uid="uid://bb4hix8x7d8wo" path="res://assets/MapPrototype.png" id="1_t4ppf"]
 [ext_resource type="PackedScene" uid="uid://ulroyeuyk226" path="res://characters/player.tscn" id="2_qoi3o"]
@@ -128,6 +128,12 @@ texture = ExtResource("1_t4ppf")
 [sub_resource type="TileSet" id="TileSet_tsgnm"]
 sources/0 = SubResource("TileSetAtlasSource_dtjrj")
 
+[sub_resource type="Curve2D" id="Curve2D_kp7dq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 434, 178, 0, 0, 0, 0, 572, 159, 0, 0, 0, 0, 554, 271, 0, 0, 0, 0, 434, 178)
+}
+point_count = 4
+
 [node name="Level1" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -145,8 +151,17 @@ layer_0/tile_data = PackedInt32Array(131078, 327680, 3)
 [node name="Player" parent="." instance=ExtResource("2_qoi3o")]
 position = Vector2(85, 229)
 
-[node name="Marines" parent="." instance=ExtResource("3_r1udf")]
-position = Vector2(169, 220)
+[node name="Marines" parent="." node_paths=PackedStringArray("move_on_path") instance=ExtResource("3_r1udf")]
+position = Vector2(467, 249)
+move_on_path = NodePath("../Patrol/PathFollow2D")
+movement_speed = 0.5
 
 [node name="Marines2" parent="." instance=ExtResource("3_r1udf")]
 position = Vector2(144, 96)
+
+[node name="Patrol" type="Path2D" parent="."]
+curve = SubResource("Curve2D_kp7dq")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Patrol"]
+position = Vector2(434, 178)
+rotation = -0.136821

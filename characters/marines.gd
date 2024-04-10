@@ -7,6 +7,8 @@ var isNpcControlled = false
 var chase_player = false
 var is_down = false
 var player = null
+var isReturning = false
+var positionToReturn
 
 @export var vision_renderer: Polygon2D
 @export var alert_color: Color
@@ -36,16 +38,26 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if is_rotating:
-		rotation = rot_start + sin(Time.get_ticks_msec()/1000. * rotation_speed) * deg_to_rad(rotation_angle/2.)
-	if move_on_path:
+
+	#if is_rotating:
+		#rotation = rot_start + sin(Time.get_ticks_msec()/1000. * rotation_speed) * deg_to_rad(rotation_angle/2.)
+	if move_on_path && !chase_player && !isNpcControlled && !isReturning:
 		move_on_path.progress += movement_speed
 		global_position = move_on_path.position
-		rotation = move_on_path.rotation
+		#rotation = move_on_path.rotation
 
-	if chase_player:
+	if isReturning:
+		var distance_to_return = global_position.distance_to(positionToReturn)
+		if distance_to_return < 1.0: 
+			isReturning = false
+		else:
+			velocity = (positionToReturn - position).normalized() * enemy_speed
+			move_and_collide(velocity * delta)
+
+	if chase_player && !isReturning:
 		velocity = (player.position - position).normalized() * enemy_speed
 		move_and_collide(velocity * delta)
+		positionToReturn = move_on_path.position
 
 
 func _input(_event: InputEvent) -> void:
@@ -70,7 +82,6 @@ func start_mind_control() -> void:
 
 
 func _on_vision_cone_area_body_entered(body: Node2D) -> void:
-	print(body)
 	if body is Player:
 		vision_renderer.color = alert_color
 		player = body
@@ -82,3 +93,4 @@ func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 		vision_renderer.color = original_color
 		player = null
 		chase_player = false
+		isReturning = true
