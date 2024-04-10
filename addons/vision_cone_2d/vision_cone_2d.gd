@@ -76,7 +76,6 @@ func calculate_vision_shape(override_static_flag = false) -> Array[Vector2]:
 	if _angle < 2*PI:
 		new_vision_points.append(Vector2.ZERO)
 	for i in range(ray_count + 1): 
-		# TODO following transform should be customizable
 		var p = _ray_to(Vector2(0, max_distance).rotated(_angular_delta * i + global_rotation - _angle_half))
 		new_vision_points.append(p)
 	if _angle < 2*PI:
@@ -111,7 +110,6 @@ func _update_render_polygon():
 	write_polygon2d.polygon = polygon
 
 func _ray_to(direction: Vector2) -> Vector2:
-	# TODO add offset to origin
 	var destination = global_position + direction
 	var query = PhysicsRayQueryParameters2D.create(global_position, destination, collision_layer_mask)
 	var collision = get_world_2d().direct_space_state.intersect_ray(query)

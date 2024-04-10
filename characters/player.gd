@@ -56,5 +56,6 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		
 func _on_stop_controlling():
 	position = Global.lastPositionRespawned
+	$PlayerCollision.disabled = false
 	$".".visible = true
 	

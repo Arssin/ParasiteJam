@@ -78,7 +78,7 @@ func _on_vision_cone_area_body_entered(body: Node2D) -> void:
 
 
 func _on_vision_cone_area_body_exited(body: Node2D) -> void:
-	print(body)
-	vision_renderer.color = original_color
-	player = null
-	chase_player = false
+	if body is Player:
+		vision_renderer.color = original_color
+		player = null
+		chase_player = false
