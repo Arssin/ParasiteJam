@@ -118,3 +118,4 @@ func _ray_to(direction: Vector2) -> Vector2:
 
 	var ray_position = collision["position"] if "position" in collision else destination
 	return to_local(ray_position)
+
