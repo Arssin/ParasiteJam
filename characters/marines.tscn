@@ -1,18 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://ovaevhdhmgd4"]
+[gd_scene load_steps=5 format=3 uid="uid://ovaevhdhmgd4"]
 
 [ext_resource type="Script" path="res://characters/marines.gd" id="1_xbd00"]
 [ext_resource type="Texture2D" uid="uid://d3gri0vcfq5lq" path="res://assets/Marine.png" id="2_dsuch"]
+[ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="3_2hid0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hm8pv"]
 radius = 5.0
 height = 16.0
 
-[node name="Marines" type="CharacterBody2D"]
+[node name="Marines" type="CharacterBody2D" node_paths=PackedStringArray("vision_renderer")]
 light_mask = 0
 scale = Vector2(1.6, 1.6)
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_xbd00")
+vision_renderer = NodePath("VisionCone2D/VisionConeRenderer")
+alert_color = Color(0.756863, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_hm8pv")
@@ -27,4 +30,12 @@ vframes = 5
 [node name="mind_control" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="VisionCone2D" parent="." instance=ExtResource("3_2hid0")]
+position = Vector2(0, -2.77556e-16)
+rotation = 4.71239
+angle_deg = 130
+max_distance = 80.0
+
 [connection signal="timeout" from="mind_control" to="." method="_on_mind_control_timeout"]
+
+[editable path="VisionCone2D"]

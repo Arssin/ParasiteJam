@@ -147,3 +147,6 @@ position = Vector2(85, 229)
 
 [node name="Marines" parent="." instance=ExtResource("3_r1udf")]
 position = Vector2(169, 220)
+
+[node name="Marines2" parent="." instance=ExtResource("3_r1udf")]
+position = Vector2(144, 96)
