@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://nqkcepm4sjb1"]
+[gd_scene load_steps=11 format=3 uid="uid://nqkcepm4sjb1"]
 
 [ext_resource type="Texture2D" uid="uid://bb4hix8x7d8wo" path="res://assets/MapPrototype.png" id="1_t4ppf"]
 [ext_resource type="PackedScene" uid="uid://ulroyeuyk226" path="res://characters/player.tscn" id="2_qoi3o"]
 [ext_resource type="PackedScene" uid="uid://ovaevhdhmgd4" path="res://characters/marines.tscn" id="3_r1udf"]
 [ext_resource type="PackedScene" uid="uid://clrte50v5ertq" path="res://scenes/laser.tscn" id="4_bee40"]
+[ext_resource type="PackedScene" uid="uid://8h3r6edqj1xt" path="res://scenes/trap.tscn" id="5_hmvky"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p568i"]
 texture = ExtResource("1_t4ppf")
@@ -169,3 +170,9 @@ rotation = -0.136821
 
 [node name="laser" parent="." instance=ExtResource("4_bee40")]
 position = Vector2(324, 337)
+
+[node name="trap" parent="." instance=ExtResource("5_hmvky")]
+position = Vector2(160, 243)
+
+[node name="trap2" parent="." instance=ExtResource("5_hmvky")]
+position = Vector2(189, 279)
