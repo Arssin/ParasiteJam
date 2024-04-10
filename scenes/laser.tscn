@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://clrte50v5ertq"]
+[gd_scene load_steps=4 format=3 uid="uid://clrte50v5ertq"]
 
 [ext_resource type="Texture2D" uid="uid://bb4hix8x7d8wo" path="res://assets/MapPrototype.png" id="1_8aa40"]
+[ext_resource type="Script" path="res://scenes/laser.gd" id="1_lvvr3"]
+[ext_resource type="Script" path="res://scenes/RayCast2D.gd" id="3_s6w2m"]
 
 [node name="laser" type="Node2D"]
+script = ExtResource("1_lvvr3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3.1, -0.499999)
+position = Vector2(2.38419e-07, -5.96046e-08)
 scale = Vector2(2, 1.939)
 texture = ExtResource("1_8aa40")
 hframes = 8
@@ -13,5 +16,25 @@ vframes = 8
 frame = 31
 
 [node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[node name="endLaser" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 12)
+target_position = Vector2(0, -92)
+collision_mask = 2
+script = ExtResource("3_s6w2m")
+
+[node name="Line2D" type="Line2D" parent="RayCast2D"]
+rotation = 0.00174533
+points = PackedVector2Array(0, 0, 0, -75)
+default_color = Color(0.705882, 0.282353, 0.262745, 1)
+
+[connection signal="timeout" from="Timer" to="RayCast2D" method="_on_timer_timeout"]
+[connection signal="timeout" from="endLaser" to="RayCast2D" method="_on_end_laser_timeout"]
