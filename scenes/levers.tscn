@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://vbwh04xsowr1"]
+
+[ext_resource type="Script" path="res://scenes/levers.gd" id="1_83y6g"]
+[ext_resource type="Texture2D" uid="uid://bb4hix8x7d8wo" path="res://assets/MapPrototype.png" id="1_agyf2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pywgs"]
+atlas = ExtResource("1_agyf2")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1o32w"]
+atlas = ExtResource("1_agyf2")
+region = Rect2(64, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hu5u7"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pywgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1o32w")
+}],
+"loop": false,
+"name": &"switch_to_normal",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rfmac"]
+
+[node name="levers" type="Node2D"]
+script = ExtResource("1_83y6g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hu5u7")
+animation = &"switch_to_normal"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 3)
+shape = SubResource("CircleShape2D_rfmac")
