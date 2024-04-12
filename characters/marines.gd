@@ -107,9 +107,11 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 
 
 func _on_stand_up_timeout() -> void:
-	pass # Replace with function body.
+	%AnimationPlayer.play("stand_up")
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "catch":
 		%stand_up.start()
+	elif anim_name == "stand_up":
+		isOnGround = false
