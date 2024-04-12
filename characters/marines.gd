@@ -25,7 +25,7 @@ var positionToReturn
 
 @onready var original_color = vision_renderer.color if vision_renderer else Color.WHITE
 @onready var rot_start = rotation
-
+var positions
 
 
 func _ready() -> void:
@@ -33,12 +33,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if isNpcControlled:
-		move_and_slide()
-
+	pass
 
 func _physics_process(delta: float) -> void:
-	
 	if is_rotating:
 		%VisionCone2D.rotation = rot_start + sin(Time.get_ticks_msec()/1000. * rotation_speed) * deg_to_rad(rotation_angle/2.)
 	if move_on_path && !chase_player && !isNpcControlled && !isReturning:
@@ -96,3 +93,8 @@ func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 		player = null
 		chase_player = false
 		isReturning = true
+
+func _draw():
+	var radius = 30
+	var color = Color(0.741176, 0.717647, 0.419608, 0.3)
+	draw_circle(Vector2(0,0),radius,color)
