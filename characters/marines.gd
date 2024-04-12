@@ -33,10 +33,20 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	pass
+	if chase_player && !isReturning && !isOnGround && !isPatrolling && player:
+		%AnimationPlayer.play("run")
+		print(player.global_position.x > global_position.x)
+		if player.global_position.x > global_position.x:
+			$Sprite2D.flip_h = false
+		else:
+			$Sprite2D.flip_h = true
+		velocity = (player.position - position).normalized() * enemy_speed
+		move_and_collide(velocity * delta)
+		positionToReturn = move_on_path.position
+
 
 func _physics_process(delta: float) -> void:
-	
+
 
 	
 	if isPatrolling && move_on_path && !chase_player && !isNpcControlled && !isReturning && !isOnGround:
@@ -64,12 +74,21 @@ func _physics_process(delta: float) -> void:
 		elif isReturning && !isPatrolling && !chase_player:
 			velocity = (positionToReturn - position).normalized() * enemy_speed
 			move_and_collide(velocity * delta)
+		
+		var current_global_position = global_position
+		
+		if current_global_position.x > previous_global_position.x:
+			scale.x = 1.6
+		elif current_global_position.x < previous_global_position.x:
+			scale.x = -1.6
+		else:
+			pass
+		
+		previous_global_position = current_global_position
 
-	if chase_player && !isReturning && !isOnGround && !isPatrolling:
-		%AnimationPlayer.play("run")
-		velocity = (player.position - position).normalized() * enemy_speed
-		move_and_collide(velocity * delta)
-		positionToReturn = move_on_path.position
+
+			
+		
 		
 	if !chase_player && !isReturning && !isOnGround && !isPatrolling:
 		%AnimationPlayer.play("idle")
