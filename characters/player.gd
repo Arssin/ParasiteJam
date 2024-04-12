@@ -81,6 +81,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		anim.play("idle")
 
 
-func _on_levers_used_lever() -> void:
+func _on_levers_used_lever(_value) -> void:
 	$AnimationPlayer.play("using")
 	anim.play('using')

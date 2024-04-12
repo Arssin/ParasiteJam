@@ -31,12 +31,13 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("interact") && canInteract && player:
-		emit_signal("used_lever")
 		if !isSwitched:
 			isSwitched = true
+			emit_signal("used_lever", true)
 			$AnimatedSprite2D.play("switch_to_normal")
 		else:
 			isSwitched = false
+			emit_signal("used_lever", false)
 			$AnimatedSprite2D.play("switch_back")
 
-signal used_lever
+signal used_lever(value)
