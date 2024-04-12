@@ -15,8 +15,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	var position_mouse_x = get_global_mouse_position().x
+	
 	if mouse_clicked && !Global.player_mind_controlling:
 		velocity = shooted_pos * 200
+	
+	
+	if position_mouse_x < global_position.x:
+		$Sprite2D.flip_h = true
+	else:
+		$Sprite2D.flip_h = false
 	
 	move_and_slide()
 

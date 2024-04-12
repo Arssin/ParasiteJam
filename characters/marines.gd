@@ -33,7 +33,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if chase_player && !isReturning && !isOnGround && !isPatrolling && player:
+	if chase_player && !isReturning && !isOnGround && !isPatrolling && player && !isNpcControlled:
 		%AnimationPlayer.play("run")
 		print(player.global_position.x > global_position.x)
 		if player.global_position.x > global_position.x:
@@ -46,9 +46,6 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-
-
-	
 	if isPatrolling && move_on_path && !chase_player && !isNpcControlled && !isReturning && !isOnGround:
 		%AnimationPlayer.play("run")
 		move_on_path.progress += movement_speed
@@ -65,7 +62,7 @@ func _physics_process(delta: float) -> void:
 		
 		previous_global_position = current_global_position
 
-	if isReturning && !chase_player && !isOnGround && !isPatrolling:
+	if isReturning && !chase_player && !isOnGround && !isPatrolling && !isNpcControlled:
 		%AnimationPlayer.play("run")
 		var distance_to_return = global_position.distance_to(positionToReturn)
 		if distance_to_return < 1.0: 
@@ -86,12 +83,17 @@ func _physics_process(delta: float) -> void:
 		
 		previous_global_position = current_global_position
 
-
-			
-		
-		
 	if !chase_player && !isReturning && !isOnGround && !isPatrolling:
 		%AnimationPlayer.play("idle")
+		
+	if isNpcControlled:
+		var position_mouse_x = get_global_mouse_position().x
+		if position_mouse_x < global_position.x:
+			$Sprite2D.flip_h = true
+		else:
+			$Sprite2D.flip_h = false
+		
+		move_and_collide(velocity * delta)
 		
 
 
