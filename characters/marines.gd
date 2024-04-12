@@ -26,6 +26,7 @@ var isPatrolling = true
 var previous_global_position = Vector2.ZERO
 
 func _ready() -> void:
+	%AnimationPlayerplay.play("idle")
 	previous_global_position = global_position
 
 
@@ -91,7 +92,7 @@ func start_mind_control() -> void:
 
 
 func _draw():
-	var radius = 30
+	var radius = 43
 	if chase_player:
 		draw_circle(Vector2(0,0),radius,colorCircleAlert)
 	else:
@@ -102,6 +103,7 @@ func _on_area_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player = body
 		chase_player = true
+		isReturning = false
 		isPatrolling = false
 		queue_redraw()
 
