@@ -7,17 +7,20 @@ var mouse_clicked = false
 var projectile := preload("res://characters/player_projectile.tscn")
 var shooted_pos
 var body_controlling = false
+@onready var anim = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	anim.play("idle")
 	Global.player_mind_controlling_stop.connect(_on_stop_controlling)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var position_mouse_x = get_global_mouse_position().x
-	
+	print(get_global_mouse_position())
 	if mouse_clicked && !Global.player_mind_controlling:
+		anim.play("fly")
 		velocity = shooted_pos * 200
 	
 	
@@ -43,8 +46,10 @@ func _input(_event: InputEvent) -> void:
 
 	if !mouse_clicked:
 		if input_direction && !Global.player_mind_controlling:
+			anim.play("run")
 			velocity = input_direction * player_speed
 		else:
+			anim.play("idle")
 			velocity = input_direction * 0
 			
 		
@@ -67,3 +72,8 @@ func _on_stop_controlling():
 	$PlayerCollision.disabled = false
 	$".".visible = true
 	
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "fly":
+		anim.play("idle")

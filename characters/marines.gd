@@ -24,6 +24,7 @@ var colorCircleClassic = Color(0.741176, 0.717647, 0.419608, 0.3)
 var colorCircleAlert = Color(0.3, 0.5, 1, 0.3)
 var isPatrolling = true
 var previous_global_position = Vector2.ZERO
+var standingNpc = false
 
 @onready var anim = %AnimationPlayer
 
@@ -33,16 +34,24 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if !move_on_path:
+		standingNpc = true
+		
 	if chase_player && !isReturning && !isOnGround && !isPatrolling && player && !isNpcControlled:
 		%AnimationPlayer.play("run")
-		print(player.global_position.x > global_position.x)
 		if player.global_position.x > global_position.x:
 			$Sprite2D.flip_h = false
 		else:
 			$Sprite2D.flip_h = true
 		velocity = (player.position - position).normalized() * enemy_speed
 		move_and_collide(velocity * delta)
-		positionToReturn = move_on_path.position
+		if !standingNpc:
+			positionToReturn = move_on_path.position
+			
+			
+	if !chase_player && standingNpc:
+		velocity = (previous_global_position - position).normalized() * enemy_speed
+		move_and_collide(velocity * delta)
 
 
 func _physics_process(delta: float) -> void:

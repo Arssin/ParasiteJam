@@ -28,6 +28,7 @@ window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 mouse_cursor/custom_image="res://assets/cursor.png"
+mouse_cursor/custom_image_hotspot=Vector2(7.5, 7.5)
 
 [input]
 
