@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf5ihquvet04"]
+
+[ext_resource type="Texture2D" uid="uid://bb4hix8x7d8wo" path="res://assets/MapPrototype.png" id="1_avdd5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8n6c"]
+
+[node name="Press" type="Control"]
+custom_minimum_size = Vector2(90, 22)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -544.0
+offset_bottom = -338.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e8n6c")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/MarginContainer"]
+position = Vector2(72, 11.5)
+scale = Vector2(1.92188, 1.6875)
+texture = ExtResource("1_avdd5")
+hframes = 8
+vframes = 8
+frame = 15
+
+[node name="Label" type="Label" parent="Panel/MarginContainer"]
+layout_mode = 2
+text = "Press"
+vertical_alignment = 1

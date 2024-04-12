@@ -16,12 +16,14 @@ func _process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		canInteract = true
+		%Press.visible = true
 
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is Player:
 		canInteract = false
+		%Press.visible = false
 
 
 func _input(_event: InputEvent) -> void:
