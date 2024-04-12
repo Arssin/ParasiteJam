@@ -46,6 +46,12 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	if isOnGround:
+		$catchArea/CollisionShape2D.disabled = true
+	else:
+		$catchArea/CollisionShape2D.disabled = false
+	
 	if isPatrolling && move_on_path && !chase_player && !isNpcControlled && !isReturning && !isOnGround:
 		%AnimationPlayer.play("run")
 		move_on_path.progress += movement_speed
@@ -62,7 +68,7 @@ func _physics_process(delta: float) -> void:
 		
 		previous_global_position = current_global_position
 
-	if isReturning && !chase_player && !isOnGround && !isPatrolling && !isNpcControlled:
+	if isReturning && !chase_player && !isOnGround && !isPatrolling && !isNpcControlled && positionToReturn:
 		%AnimationPlayer.play("run")
 		var distance_to_return = global_position.distance_to(positionToReturn)
 		if distance_to_return < 1.0: 
@@ -109,23 +115,29 @@ func _input(_event: InputEvent) -> void:
 
 
 func _on_mind_control_timeout() -> void:
+	isOnGround = true
+	queue_redraw()
+	anim.play("be_down")
 	isNpcControlled = false
 	Global.lastPositionRespawned = position
 	Global.player_mind_controlling = false
-	$CollisionShape2D.disabled = true
 	$mind_control.stop()
 	
 func start_mind_control() -> void:
+	queue_redraw()
 	$mind_control.start()
 
 
 
 func _draw():
-	var radius = 43
-	if chase_player:
-		draw_circle(Vector2(0,0),radius,colorCircleAlert)
+	if isOnGround or isNpcControlled:
+		pass
 	else:
-		draw_circle(Vector2(0,0),radius,colorCircleClassic)
+		var radius = 43
+		if chase_player:
+			draw_circle(Vector2(0,0),radius,colorCircleAlert)
+		else:
+			draw_circle(Vector2(0,0),radius,colorCircleClassic)
 
 
 func _on_area_body_entered(body: Node2D) -> void:
@@ -134,6 +146,10 @@ func _on_area_body_entered(body: Node2D) -> void:
 		chase_player = true
 		isReturning = false
 		isPatrolling = false
+		if isOnGround:
+			$chase.visible = false
+		else:
+			$chase.visible = true
 		queue_redraw()
 
 
@@ -142,6 +158,7 @@ func _on_area_body_exited(body: Node2D) -> void:
 		player = null
 		isReturning = true
 		chase_player = false
+		$chase.visible = false
 		queue_redraw()
 
 
@@ -157,7 +174,6 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 
 
 func _on_stand_up_timeout() -> void:
-	print('stand')
 	%AnimationPlayer.play("stand_up")
 
 
@@ -166,6 +182,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		%stand_up.start()
 	elif anim_name == "stand_up":
 		isOnGround = false
+	elif anim_name == "be_down":
+		isOnGround = true
 
 
 func _on_animation_player_current_animation_changed(name: String) -> void:
