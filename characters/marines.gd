@@ -25,8 +25,10 @@ var colorCircleAlert = Color(0.3, 0.5, 1, 0.3)
 var isPatrolling = true
 var previous_global_position = Vector2.ZERO
 
+@onready var anim = %AnimationPlayer
+
 func _ready() -> void:
-	%AnimationPlayerplay.play("idle")
+	anim.play("idle")
 	previous_global_position = global_position
 
 
@@ -38,6 +40,7 @@ func _physics_process(delta: float) -> void:
 
 	
 	if isPatrolling && move_on_path && !chase_player && !isNpcControlled && !isReturning && !isOnGround:
+		%AnimationPlayer.play("run")
 		move_on_path.progress += movement_speed
 		global_position = move_on_path.position
 		
@@ -53,6 +56,7 @@ func _physics_process(delta: float) -> void:
 		previous_global_position = current_global_position
 
 	if isReturning && !chase_player && !isOnGround && !isPatrolling:
+		%AnimationPlayer.play("run")
 		var distance_to_return = global_position.distance_to(positionToReturn)
 		if distance_to_return < 1.0: 
 			isReturning = false
@@ -62,9 +66,13 @@ func _physics_process(delta: float) -> void:
 			move_and_collide(velocity * delta)
 
 	if chase_player && !isReturning && !isOnGround && !isPatrolling:
+		%AnimationPlayer.play("run")
 		velocity = (player.position - position).normalized() * enemy_speed
 		move_and_collide(velocity * delta)
 		positionToReturn = move_on_path.position
+		
+	if !chase_player && !isReturning && !isOnGround && !isPatrolling:
+		%AnimationPlayer.play("idle")
 		
 
 
@@ -136,3 +144,11 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		%stand_up.start()
 	elif anim_name == "stand_up":
 		isOnGround = false
+
+
+func _on_animation_player_current_animation_changed(name: String) -> void:
+	pass # Replace with function body.
+
+
+func _on_animation_player_animation_changed(old_name: StringName, new_name: StringName) -> void:
+	pass # Replace with function body.
