@@ -22,32 +22,50 @@ var positionToReturn
 
 var colorCircleClassic = Color(0.741176, 0.717647, 0.419608, 0.3)
 var colorCircleAlert = Color(0.3, 0.5, 1, 0.3)
-
+var isPatrolling = true
+var previous_global_position = Vector2.ZERO
 
 func _ready() -> void:
-	pass
+	previous_global_position = global_position
 
 
 func _process(delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	if move_on_path && !chase_player && !isNpcControlled && !isReturning && !isOnGround:
+	
+
+	
+	if isPatrolling && move_on_path && !chase_player && !isNpcControlled && !isReturning && !isOnGround:
 		move_on_path.progress += movement_speed
 		global_position = move_on_path.position
+		
+		var current_global_position = global_position
+		
+		if current_global_position.x > previous_global_position.x:
+			scale.x = 1.6
+		elif current_global_position.x < previous_global_position.x:
+			scale.x = -1.6
+		else:
+			pass
+		
+		previous_global_position = current_global_position
 
-	if isReturning && !chase_player && !isOnGround:
+	if isReturning && !chase_player && !isOnGround && !isPatrolling:
 		var distance_to_return = global_position.distance_to(positionToReturn)
 		if distance_to_return < 1.0: 
 			isReturning = false
-		else:
+			isPatrolling = true
+		elif isReturning && !isPatrolling && !chase_player:
 			velocity = (positionToReturn - position).normalized() * enemy_speed
 			move_and_collide(velocity * delta)
 
-	if chase_player && !isReturning && !isOnGround:
+	if chase_player && !isReturning && !isOnGround && !isPatrolling:
 		velocity = (player.position - position).normalized() * enemy_speed
 		move_and_collide(velocity * delta)
 		positionToReturn = move_on_path.position
+		
+
 
 
 func _input(_event: InputEvent) -> void:
@@ -84,14 +102,15 @@ func _on_area_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player = body
 		chase_player = true
+		isPatrolling = false
 		queue_redraw()
 
 
 func _on_area_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player = null
-		chase_player = false
 		isReturning = true
+		chase_player = false
 		queue_redraw()
 
 
