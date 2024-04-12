@@ -36,12 +36,9 @@ func _process(delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	if is_rotating:
-		%VisionCone2D.rotation = rot_start + sin(Time.get_ticks_msec()/1000. * rotation_speed) * deg_to_rad(rotation_angle/2.)
 	if move_on_path && !chase_player && !isNpcControlled && !isReturning:
 		move_on_path.progress += movement_speed
 		global_position = move_on_path.position
-		#rotation = move_on_path.rotation
 
 	if isReturning:
 		var distance_to_return = global_position.distance_to(positionToReturn)
