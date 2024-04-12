@@ -20,7 +20,6 @@ var positionToReturn
 @onready var rot_start = rotation
 var positions
 
-var color = Color(0.741176, 0.717647, 0.419608, 0.3)
 
 var colorCircleClassic = Color(0.741176, 0.717647, 0.419608, 0.3)
 var colorCircleAlert = Color(0.3, 0.5, 1, 0.3)
@@ -76,19 +75,22 @@ func start_mind_control() -> void:
 
 func _draw():
 	var radius = 30
-	draw_circle(Vector2(0,0),radius,color)
+	if chase_player:
+		draw_circle(Vector2(0,0),radius,colorCircleAlert)
+	else:
+		draw_circle(Vector2(0,0),radius,colorCircleClassic)
 
 
 func _on_area_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player = body
-		color = colorCircleAlert
 		chase_player = true
+		queue_redraw()
 
 
 func _on_area_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player = null
-		color = colorCircleClassic
 		chase_player = false
 		isReturning = true
+		queue_redraw()
