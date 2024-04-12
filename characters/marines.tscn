@@ -28,10 +28,22 @@ tracks/1/path = NodePath("CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
+"times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hit_area/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_4dj8x"]
@@ -64,6 +76,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hit_area/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_78mc7"]
@@ -109,6 +133,7 @@ script = ExtResource("1_xbd00")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_hm8pv")
+disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_dsuch")
@@ -125,7 +150,6 @@ libraries = {
 wait_time = 5.0
 
 [node name="area" type="Area2D" parent="."]
-visible = false
 scale = Vector2(0.625, 0.625)
 collision_layer = 0
 collision_mask = 2
@@ -134,7 +158,6 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_78ev6")
 
 [node name="hit_area" type="Area2D" parent="."]
-visible = false
 scale = Vector2(1, 1)
 collision_layer = 0
 collision_mask = 2
@@ -144,14 +167,21 @@ shape = SubResource("CircleShape2D_js14h")
 disabled = true
 
 [node name="catchArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="catchArea"]
 shape = SubResource("CircleShape2D_nxkpo")
 
+[node name="stand_up" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="mind_control" to="." method="_on_mind_control_timeout"]
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
 [connection signal="body_exited" from="area" to="." method="_on_area_body_exited"]
+[connection signal="body_entered" from="hit_area" to="." method="_on_hit_area_body_entered"]
 [connection signal="body_entered" from="catchArea" to="." method="_on_catch_area_body_entered"]
+[connection signal="timeout" from="stand_up" to="." method="_on_stand_up_timeout"]

@@ -99,3 +99,17 @@ func _on_catch_area_body_entered(body: Node2D) -> void:
 	if body is Player:
 		%AnimationPlayer.play("catch")
 		isOnGround = true
+
+
+func _on_hit_area_body_entered(body: Node2D) -> void:
+	if body is Player:
+		body.queue_free()
+
+
+func _on_stand_up_timeout() -> void:
+	pass # Replace with function body.
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "catch":
+		%stand_up.start()
