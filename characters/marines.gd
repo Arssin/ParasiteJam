@@ -10,22 +10,20 @@ var player = null
 var isReturning = false
 var positionToReturn
 
-@export var vision_renderer: Polygon2D
-@export var alert_color: Color
 
-@export_group("Rotation")
-@export var is_rotating = false
-@export var rotation_speed = 0.1
-@export var rotation_angle = 90
 
 @export_group("Movement")
 @export var move_on_path: PathFollow2D
 @export var movement_speed = 0.1
 @onready var pos_start = position.x
 
-@onready var original_color = vision_renderer.color if vision_renderer else Color.WHITE
 @onready var rot_start = rotation
 var positions
+
+var color = Color(0.741176, 0.717647, 0.419608, 0.3)
+
+var colorCircleClassic = Color(0.741176, 0.717647, 0.419608, 0.3)
+var colorCircleAlert = Color(0.3, 0.5, 1, 0.3)
 
 
 func _ready() -> void:
@@ -49,8 +47,6 @@ func _physics_process(delta: float) -> void:
 			move_and_collide(velocity * delta)
 
 	if chase_player && !isReturning:
-		#var direction_to_player = (player.global_position - global_position).normalized()
-		#%VisionCone2D.rotation = atan2(direction_to_player.y, direction_to_player.x)
 		velocity = (player.position - position).normalized() * enemy_speed
 		move_and_collide(velocity * delta)
 		positionToReturn = move_on_path.position
@@ -77,21 +73,22 @@ func start_mind_control() -> void:
 	$mind_control.start()
 
 
-func _on_vision_cone_area_body_entered(body: Node2D) -> void:
-	if body is Player:
-		vision_renderer.color = alert_color
-		player = body
-		chase_player = true
-
-
-func _on_vision_cone_area_body_exited(body: Node2D) -> void:
-	if body is Player:
-		vision_renderer.color = original_color
-		player = null
-		chase_player = false
-		isReturning = true
 
 func _draw():
 	var radius = 30
-	var color = Color(0.741176, 0.717647, 0.419608, 0.3)
 	draw_circle(Vector2(0,0),radius,color)
+
+
+func _on_area_body_entered(body: Node2D) -> void:
+	if body is Player:
+		player = body
+		color = colorCircleAlert
+		chase_player = true
+
+
+func _on_area_body_exited(body: Node2D) -> void:
+	if body is Player:
+		player = null
+		color = colorCircleClassic
+		chase_player = false
+		isReturning = true
