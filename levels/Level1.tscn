@@ -180,3 +180,5 @@ position = Vector2(189, 279)
 
 [node name="levers" parent="." instance=ExtResource("6_1lphw")]
 position = Vector2(252, 188)
+
+[connection signal="used_lever" from="levers" to="Player" method="_on_levers_used_lever"]

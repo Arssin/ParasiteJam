@@ -18,9 +18,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var position_mouse_x = get_global_mouse_position().x
-	print(get_global_mouse_position())
 	if mouse_clicked && !Global.player_mind_controlling:
-		anim.play("fly")
+		if anim.current_animation != "using":
+			anim.play("fly")
 		velocity = shooted_pos * 200
 	
 	
@@ -46,10 +46,12 @@ func _input(_event: InputEvent) -> void:
 
 	if !mouse_clicked:
 		if input_direction && !Global.player_mind_controlling:
-			anim.play("run")
+			if anim.current_animation != "using":
+				anim.play("run")
 			velocity = input_direction * player_speed
 		else:
-			anim.play("idle")
+			if anim.current_animation != "using":
+				anim.play("idle")
 			velocity = input_direction * 0
 			
 		
@@ -77,3 +79,8 @@ func _on_stop_controlling():
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fly":
 		anim.play("idle")
+
+
+func _on_levers_used_lever() -> void:
+	$AnimationPlayer.play("using")
+	anim.play('using')
