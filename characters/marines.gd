@@ -54,9 +54,9 @@ func _physics_process(delta: float) -> void:
 		var current_global_position = global_position
 		
 		if current_global_position.x > previous_global_position.x:
-			scale.x = 1.6
+			$Sprite2D.flip_h = false
 		elif current_global_position.x < previous_global_position.x:
-			scale.x = -1.6
+			$Sprite2D.flip_h = true
 		else:
 			pass
 		
@@ -75,9 +75,9 @@ func _physics_process(delta: float) -> void:
 		var current_global_position = global_position
 		
 		if current_global_position.x > previous_global_position.x:
-			scale.x = 1.6
+			$Sprite2D.flip_h = false
 		elif current_global_position.x < previous_global_position.x:
-			scale.x = -1.6
+			$Sprite2D.flip_h = true
 		else:
 			pass
 		
@@ -157,6 +157,7 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 
 
 func _on_stand_up_timeout() -> void:
+	print('stand')
 	%AnimationPlayer.play("stand_up")
 
 
