@@ -5,7 +5,7 @@ class_name Enemy
 var enemy_speed = 60
 var isNpcControlled = false
 var chase_player = false
-var is_down = false
+var isOnGround = false
 var player = null
 var isReturning = false
 var positionToReturn
@@ -18,7 +18,6 @@ var positionToReturn
 @onready var pos_start = position.x
 
 @onready var rot_start = rotation
-var positions
 
 
 var colorCircleClassic = Color(0.741176, 0.717647, 0.419608, 0.3)
@@ -33,11 +32,11 @@ func _process(delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	if move_on_path && !chase_player && !isNpcControlled && !isReturning:
+	if move_on_path && !chase_player && !isNpcControlled && !isReturning && !isOnGround:
 		move_on_path.progress += movement_speed
 		global_position = move_on_path.position
 
-	if isReturning:
+	if isReturning && !chase_player && !isOnGround:
 		var distance_to_return = global_position.distance_to(positionToReturn)
 		if distance_to_return < 1.0: 
 			isReturning = false
@@ -45,7 +44,7 @@ func _physics_process(delta: float) -> void:
 			velocity = (positionToReturn - position).normalized() * enemy_speed
 			move_and_collide(velocity * delta)
 
-	if chase_player && !isReturning:
+	if chase_player && !isReturning && !isOnGround:
 		velocity = (player.position - position).normalized() * enemy_speed
 		move_and_collide(velocity * delta)
 		positionToReturn = move_on_path.position
@@ -94,3 +93,9 @@ func _on_area_body_exited(body: Node2D) -> void:
 		chase_player = false
 		isReturning = true
 		queue_redraw()
+
+
+func _on_catch_area_body_entered(body: Node2D) -> void:
+	if body is Player:
+		%AnimationPlayer.play("catch")
+		isOnGround = true

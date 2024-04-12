@@ -47,7 +47,7 @@ func teleport(position):
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body is Enemy:
+	if body is Enemy && mouse_clicked:
 		Global.player_mind_controlling = true
 		mouse_clicked = false
 		body.isNpcControlled = true
