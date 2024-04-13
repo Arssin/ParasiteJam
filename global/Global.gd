@@ -1,5 +1,12 @@
 extends Node
 
+@export var amount_of_shoots = 4:
+	get:
+		return amount_of_shoots
+	set(value):
+		emit_signal("new_amound_of_shoots", value)
+		amount_of_shoots = value
+
 @export var player_mind_controlling = false:
 	get:
 		return player_mind_controlling
@@ -39,6 +46,6 @@ func new_game():
 	get_tree().paused = false
 	Global.load_level("Level1")
 
-
+signal new_amound_of_shoots(value)
 signal player_mind_controlling_call
 signal player_mind_controlling_stop

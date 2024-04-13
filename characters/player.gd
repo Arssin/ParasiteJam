@@ -45,10 +45,7 @@ func _input(_event: InputEvent) -> void:
 			$PlayerCollision.disabled = true
 			$EnvCheck/Env.disabled = false
 			mouse_clicked = true
-			
-	#if Global.player_mind_controlling:
-		#if Input.is_action_just_pressed("right_mouse"):
-			#Global.player_mind_controlling = false
+
 
 	if !mouse_clicked:
 		if input_direction && !Global.player_mind_controlling:
