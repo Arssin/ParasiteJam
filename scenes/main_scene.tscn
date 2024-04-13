@@ -35,7 +35,6 @@ grow_vertical = 2
 [node name="Menu" type="Control" parent="."]
 unique_name_in_owner = true
 process_mode = 3
-visible = false
 z_index = 10
 layout_mode = 1
 anchors_preset = 15
@@ -227,6 +226,7 @@ text = "Back to menu
 [node name="Lost" type="Control" parent="."]
 unique_name_in_owner = true
 process_mode = 2
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -234,13 +234,54 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="Lost"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Panel2" type="Panel" parent="Lost"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -198.0
+offset_top = -89.0
+offset_right = 198.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Lost/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Lost/Panel2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Label" type="Label" parent="Lost/Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "You failed to escape!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Lost/Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "BACK TO MENU"
 
 [connection signal="pressed" from="Menu/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="Win/Panel2/MarginContainer/VBoxContainer/Back to menu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="Lost/Panel2/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

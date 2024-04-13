@@ -87,4 +87,12 @@ func _on_levers_used_lever(_value) -> void:
 	
 	
 func die() -> void:
+	get_tree().paused = true
+	var childrens = get_tree().root.get_children()
+	for child in childrens:
+		if child.name == "MainScene":
+			var mainScene = child.get_children()
+			for scenes in mainScene:
+				if scenes.name == "Lost":
+					scenes.visible = true
 	queue_free()
