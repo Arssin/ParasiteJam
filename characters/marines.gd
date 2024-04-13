@@ -121,6 +121,15 @@ func _input(_event: InputEvent) -> void:
 			velocity = input_direction * enemy_speed
 		else:
 			velocity = input_direction * 0
+		
+		if Input.is_action_just_pressed("right_mouse"):
+			isOnGround = true
+			queue_redraw()
+			anim.play("be_down")
+			isNpcControlled = false
+			Global.lastPositionRespawned = position
+			Global.player_mind_controlling = false
+			$mind_control.stop()
 
 
 func _on_mind_control_timeout() -> void:
