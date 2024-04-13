@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcr4k18a0edrr"]
+[gd_scene load_steps=8 format=3 uid="uid://dcr4k18a0edrr"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_26uua"]
 [ext_resource type="Theme" uid="uid://cxlnedliu6hhh" path="res://ui/theme.tres" id="2_7oyh3"]
 [ext_resource type="Texture2D" uid="uid://d3gri0vcfq5lq" path="res://assets/Marine.png" id="2_pp5cw"]
 [ext_resource type="Texture2D" uid="uid://cwi8r1kcgthma" path="res://assets/Hero.png" id="3_7raj4"]
 [ext_resource type="Texture2D" uid="uid://ckyjhqwlntcxi" path="res://assets/sss.png" id="4_duwta"]
+[ext_resource type="AudioStream" uid="uid://cbos5cnu6ns82" path="res://assets/Jam.wav" id="6_suob3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ht4aq"]
 bg_color = Color(0.0470588, 0.184314, 0.270588, 1)
@@ -166,6 +167,10 @@ text = "MUSIC OFF"
 unique_name_in_owner = true
 
 [node name="MUSIC" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("6_suob3")
+volume_db = 15.0
+autoplay = true
 
 [node name="SFX" type="AudioStreamPlayer2D" parent="."]
 
