@@ -73,9 +73,10 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		$".".visible = false
 		
 func _on_stop_controlling():
-	position = Global.lastPositionRespawned
-	$PlayerCollision.disabled = false
-	$".".visible = true
+	if Global.lastPositionRespawned:
+		position = Global.lastPositionRespawned
+		$PlayerCollision.disabled = false
+		$".".visible = true
 	
 
 
@@ -92,6 +93,8 @@ func _on_levers_used_lever(_value) -> void:
 	
 func die() -> void:
 	$die.start()
+	$Sprite2D.visible = false
+	Global.player_mind_controlling = false
 	set_process(false)
 	set_physics_process(false)
 	
@@ -112,4 +115,5 @@ func _on_die_timeout() -> void:
 					scenes.visible = true
 					get_tree().paused = true
 	queue_free()
+
 
