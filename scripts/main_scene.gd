@@ -39,6 +39,8 @@ func _process(delta: float) -> void:
 		minutes = fmod(time,3600) / 60
 		var formatedSec = "%02d" % seconds
 		%Time.text = "TIME " + str(minutes) + ":" + formatedSec
+		if $Win.visible:
+			$Win/Panel2/MarginContainer/VBoxContainer/LabelTajm.text = "YOUR TIME:" + " " + str(minutes) + ":" + formatedSec
 		
 
 

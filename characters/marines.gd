@@ -195,12 +195,11 @@ func _on_catch_area_body_entered(body: Node2D) -> void:
 
 func _on_hit_area_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.queue_free()
+		body.die()
 
 
 func _on_stand_up_timeout() -> void:
 	%AnimationPlayer.play("stand_up")
-	queue_redraw()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -208,6 +207,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		%stand_up.start()
 	elif anim_name == "stand_up":
 		isOnGround = false
+		queue_redraw()
 	elif anim_name == "be_down":
 		isOnGround = true
 

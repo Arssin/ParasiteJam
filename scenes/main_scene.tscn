@@ -8,12 +8,12 @@
 [ext_resource type="AudioStream" uid="uid://cbos5cnu6ns82" path="res://assets/Jam.wav" id="6_suob3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ht4aq"]
-bg_color = Color(0.0470588, 0.184314, 0.270588, 1)
+bg_color = Color(0.0509804, 0.196078, 0.286275, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.0156863, 0.14902, 0.301961, 1)
+border_width_bottom = 9
+border_color = Color(0, 0.0156863, 0.0509804, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_30hy7"]
 bg_color = Color(0.196078, 0.196078, 0.254902, 1)
@@ -304,9 +304,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ht4aq")
 
 [node name="MarginContainer" type="MarginContainer" parent="Win/Panel2"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -138.0
+offset_right = 138.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
@@ -321,16 +324,17 @@ alignment = 1
 
 [node name="Label" type="Label" parent="Win/Panel2/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Congrats. You managed to escape!"
+text = "Congrats. You managed to escape! 
+Thanks for playing!"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Win/Panel2/MarginContainer/VBoxContainer"]
+[node name="LabelTajm" type="Label" parent="Win/Panel2/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Time:"
 horizontal_alignment = 1
 
 [node name="Back to menu" type="Button" parent="Win/Panel2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_7oyh3")
 text = "Back to menu
 "
 
