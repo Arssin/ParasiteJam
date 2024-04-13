@@ -91,7 +91,17 @@ func _on_levers_used_lever(_value) -> void:
 	
 	
 func die() -> void:
-	get_tree().paused = true
+	$die.start()
+	queue_free()
+	
+
+
+func _on_env_check_body_entered(body: Node2D) -> void:
+	if body:
+		die()
+
+
+func _on_die_timeout() -> void:
 	var childrens = get_tree().root.get_children()
 	for child in childrens:
 		if child.name == "MainScene":
@@ -99,9 +109,5 @@ func die() -> void:
 			for scenes in mainScene:
 				if scenes.name == "Lost":
 					scenes.visible = true
-	queue_free()
+					get_tree().paused = true
 
-
-func _on_env_check_body_entered(body: Node2D) -> void:
-	if body:
-		die()

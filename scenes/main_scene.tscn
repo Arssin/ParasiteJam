@@ -480,6 +480,75 @@ offset_bottom = 40.0
 theme = SubResource("Theme_vuxr4")
 text = "X"
 
+[node name="Pause" type="Control" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+z_index = 8
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel2" type="Panel" parent="Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -216.0
+offset_top = -128.5
+offset_right = 216.0
+offset_bottom = 128.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Pause/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -93.5
+offset_right = 115.0
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/Panel2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="pauselab" type="Label" parent="Pause/Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "PAUSE"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Pause/Panel2/MarginContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme = ExtResource("2_7oyh3")
+text = "RESUME"
+
+[node name="ToMenu" type="Button" parent="Pause/Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_7oyh3")
+text = "BACK TO MENU"
+
 [connection signal="pressed" from="Menu/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
@@ -487,3 +556,5 @@ text = "X"
 [connection signal="pressed" from="Win/Panel2/MarginContainer/VBoxContainer/Back to menu" to="." method="_on_back_to_menu_pressed"]
 [connection signal="pressed" from="Lost/Panel2/MarginContainer/VBoxContainer/btnLabel" to="." method="_on_btn_label_pressed"]
 [connection signal="pressed" from="Creds/Panel/Panel/BtnCreds" to="." method="_on_btn_creds_pressed"]
+[connection signal="pressed" from="Pause/Panel2/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Pause/Panel2/MarginContainer/VBoxContainer/ToMenu" to="." method="_on_to_menu_pressed"]

@@ -28,7 +28,6 @@ func _process(delta: float) -> void:
 
 
 func _change_values_shoots(value):
-	print('lets go')
 	%"Amount of shots".text = str(value)
 
 
@@ -37,7 +36,11 @@ func _on_start_game_pressed() -> void:
 	Global.new_game()
 
 
-
+func _input(event: InputEvent) -> void:
+	if !%Menu.visible && !%Lost.visible && !$Win.visible:
+		if Input.is_action_just_pressed("escape"):
+			get_tree().paused = true
+			%Pause.visible = true
 
 
 func _on_back_to_menu_pressed() -> void:
@@ -79,3 +82,14 @@ func _on_btn_label_pressed() -> void:
 	get_tree().paused = true
 	%Lost.visible = false
 	%Menu.visible = true
+
+
+func _on_resume_pressed() -> void:
+	%Pause.visible = false
+	get_tree().paused = false
+
+
+func _on_to_menu_pressed() -> void:
+	%Menu.visible = true
+	%Pause.visible = false
+	get_tree().paused = true

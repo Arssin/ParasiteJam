@@ -206,7 +206,7 @@ layer_0/tile_data = PackedInt32Array(0, 131074, 1, 786432, 131074, 1, 65536, 131
 [node name="Player" parent="." instance=ExtResource("3_wa28c")]
 position = Vector2(32, 11)
 
-[node name="Marines" parent="." instance=ExtResource("4_38k43")]
+[node name="Marines156" parent="." instance=ExtResource("4_38k43")]
 position = Vector2(133, 100)
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -225,10 +225,10 @@ position = Vector2(0, 5)
 polygon = PackedVector2Array(-2, 130, 16, 149, 17, 283, 178, 283, 480, 283, 480, 187, 522, 186, 521, 123, 480, 123, 480, 59, 179, 59, 96, 59, 96, 123, 48, 123, 48, -5, 16, -5, 16, 148, -3, 118, -6, 140, -39, 96, -34, -22, 118, -40, 352, 9, 565, 45, 558, 111, 694, 146, 618, 222, 536, 315, 316, 338, -39, 325, -25, 172, -12, 147, -4, 145, -7, 139)
 metadata/_edit_lock_ = true
 
-[node name="Marines2" parent="." instance=ExtResource("4_38k43")]
+[node name="Marines2156" parent="." instance=ExtResource("4_38k43")]
 position = Vector2(230, 246)
 
-[node name="Marines3" parent="." node_paths=PackedStringArray("move_on_path") instance=ExtResource("4_38k43")]
+[node name="Marines32465" parent="." node_paths=PackedStringArray("move_on_path") instance=ExtResource("4_38k43")]
 position = Vector2(442, 178)
 move_on_path = NodePath("../Path2D/PathFollow2D")
 movement_speed = 0.5

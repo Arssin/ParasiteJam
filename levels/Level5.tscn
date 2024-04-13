@@ -35,13 +35,8 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." instance=ExtResource("3_q03f8")]
 position = Vector2(31, 322)
 
-[node name="Marines" parent="." instance=ExtResource("5_icgxp")]
+[node name="Marines15" parent="." instance=ExtResource("5_icgxp")]
 position = Vector2(305, 63)
-
-[node name="Marines2" parent="." node_paths=PackedStringArray("move_on_path") instance=ExtResource("5_icgxp")]
-position = Vector2(343, 192)
-move_on_path = NodePath("../Path2D/PathFollow2D")
-movement_speed = 0.4
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(333, 211)
@@ -120,10 +115,15 @@ position = Vector2(526, 113)
 rotation = 1.5708
 target_pos = -200
 
-[node name="Marines3" parent="." instance=ExtResource("5_icgxp")]
+[node name="Marines12" parent="." node_paths=PackedStringArray("move_on_path") instance=ExtResource("5_icgxp")]
+position = Vector2(343, 192)
+move_on_path = NodePath("../Path2D/PathFollow2D")
+movement_speed = 0.4
+
+[node name="Marines13" parent="." instance=ExtResource("5_icgxp")]
 position = Vector2(599, 317)
 
-[node name="Marines4" parent="." instance=ExtResource("5_icgxp")]
+[node name="Marines14" parent="." instance=ExtResource("5_icgxp")]
 position = Vector2(536, 146)
 
 [node name="laser4" parent="." instance=ExtResource("8_5q8fj")]

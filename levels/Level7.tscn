@@ -60,23 +60,23 @@ collision_mask = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(16, 316, 16, 352, 624, 352, 624, 225, 624, 0, 591, 1, 591, 319, 560, 320, 560, 16, 96, 16, 96, 144, 64, 144, 64, 0, 16, 0, 16, 269, -35, 240, -27, -61, 189, -93, 654, -101, 798, 92, 818, 379, 746, 508, 442, 485, -21, 444, -95, 375, -32, 260, 16, 270)
 
-[node name="Marines" parent="." instance=ExtResource("6_jj4eo")]
+[node name="Marines111" parent="." instance=ExtResource("6_jj4eo")]
 position = Vector2(37, 167)
 
-[node name="Marines2" parent="." node_paths=PackedStringArray("move_on_path") instance=ExtResource("6_jj4eo")]
+[node name="Marines22123" parent="." node_paths=PackedStringArray("move_on_path") instance=ExtResource("6_jj4eo")]
 position = Vector2(66, 258)
 move_on_path = NodePath("../Path2D2/PathFollow2D")
 movement_speed = 0.5
 
-[node name="Marines3" parent="." instance=ExtResource("6_jj4eo")]
+[node name="Marines3234" parent="." instance=ExtResource("6_jj4eo")]
 position = Vector2(182, 206)
 
-[node name="Marines4" parent="." node_paths=PackedStringArray("move_on_path") instance=ExtResource("6_jj4eo")]
+[node name="Marines43455" parent="." node_paths=PackedStringArray("move_on_path") instance=ExtResource("6_jj4eo")]
 position = Vector2(114, 138)
 move_on_path = NodePath("../Path2D/PathFollow2D")
 movement_speed = 0.4
 
-[node name="Marines5" parent="." instance=ExtResource("6_jj4eo")]
+[node name="Marines5345" parent="." instance=ExtResource("6_jj4eo")]
 position = Vector2(158, 307)
 
 [node name="Path2D" type="Path2D" parent="."]
