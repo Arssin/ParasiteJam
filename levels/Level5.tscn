@@ -33,7 +33,7 @@ layer_0/tile_data = PackedInt32Array(-4, 131072, 3, 65532, 131072, 3, 131068, 13
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("3_q03f8")]
-position = Vector2(563, -3)
+position = Vector2(31, 322)
 
 [node name="Marines" parent="." instance=ExtResource("5_icgxp")]
 position = Vector2(305, 63)
@@ -41,6 +41,7 @@ position = Vector2(305, 63)
 [node name="Marines2" parent="." node_paths=PackedStringArray("move_on_path") instance=ExtResource("5_icgxp")]
 position = Vector2(343, 192)
 move_on_path = NodePath("../Path2D/PathFollow2D")
+movement_speed = 0.4
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(333, 211)

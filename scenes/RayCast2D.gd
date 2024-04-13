@@ -27,6 +27,10 @@ func _physics_process(delta: float) -> void:
 		var collider = get_collider()
 		
 		if collider is Player:
+			collider.die()
+		
+		if collider is Enemy:
+			print('essa')
 			collider.queue_free()
 		
 		#collision_particles_2.global_rotation = get_collision_normal().angle()

@@ -2,20 +2,19 @@ extends CharacterBody2D
 
 class_name Player
 
-var player_speed = 500
+var player_speed = 80
 var mouse_clicked = false
 var projectile := preload("res://characters/player_projectile.tscn")
 var shooted_pos
 var body_controlling = false
 @onready var anim = $AnimationPlayer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	anim.play("idle")
 	Global.player_mind_controlling_stop.connect(_on_stop_controlling)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	var position_mouse_x = get_global_mouse_position().x
 	if mouse_clicked && !Global.player_mind_controlling:
@@ -38,8 +37,9 @@ func _process(delta: float) -> void:
 func _input(_event: InputEvent) -> void:
 	var input_direction = Input.get_vector("move_left", "move_right","move_up", "move_down")
 	
-	if !mouse_clicked && !Global.player_mind_controlling:
+	if !mouse_clicked && !Global.player_mind_controlling && Global.amount_of_shoots > 0:
 		if Input.is_action_just_pressed("left_mouse"):
+			Global.amount_of_shoots -= 1
 			var mouse_position = get_global_mouse_position()
 			shooted_pos = (mouse_position - global_position).normalized()
 			$PlayerCollision.disabled = true

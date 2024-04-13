@@ -44,6 +44,7 @@ func load_level(level_name: String):
 
 func new_game():
 	get_tree().paused = false
+	Global.amount_of_shoots = 4
 	Global.load_level("Level1")
 
 signal new_amound_of_shoots(value)
