@@ -1,20 +1,14 @@
 extends RayCast2D
 
-#@onready var casting_particles: GPUParticles2D = $CastingParticles
-#@onready var collision_particles_2: GPUParticles2D = $CollisionParticles2
-#@onready var beam_particle_2d: GPUParticles2D = $BeamParticle2D
 
 var is_casting: bool = false :
 	set(value): 
 		is_casting = value
 		
-		#beam_particle_2d.emitting = is_casting
-		#casting_particles.emitting = is_casting
-		
+	
 		if is_casting:
 			appear()
 		else:
-			#collision_particles_2.emitting = false
 			disapear()
 		set_physics_process(is_casting)
 

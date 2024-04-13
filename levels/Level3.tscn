@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://djx35go1lbgax"]
+[gd_scene load_steps=10 format=3 uid="uid://djx35go1lbgax"]
 
 [ext_resource type="Script" path="res://levels/Level3.gd" id="1_dsapc"]
 [ext_resource type="Texture2D" uid="uid://dajhabvgmuhto" path="res://assets/MapPrototype-sheet3.png" id="2_up7mn"]
@@ -186,6 +186,9 @@ sources/2 = SubResource("TileSetAtlasSource_ei6d0")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlxbf"]
 size = Vector2(40, 224)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjf6l"]
+size = Vector2(22, 60)
+
 [sub_resource type="Curve2D" id="Curve2D_kio3d"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 124, -1, 0, 0, 0, 0, 69, -96, 0, 0, 0, 0, 69, 94)
@@ -229,6 +232,13 @@ position = Vector2(230, 246)
 position = Vector2(442, 178)
 move_on_path = NodePath("../Path2D/PathFollow2D")
 
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(312, 176)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(196, -17)
+shape = SubResource("RectangleShape2D_gjf6l")
+
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(317, 174)
 curve = SubResource("Curve2D_kio3d")
@@ -238,3 +248,4 @@ position = Vector2(124, -1)
 rotation = -2.09559
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

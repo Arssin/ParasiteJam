@@ -26,13 +26,15 @@ wait_time = 2.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(0, 12)
-target_position = Vector2(0, -92)
-collision_mask = 2
+position = Vector2(0, 15)
+target_position = Vector2(0, -75)
+collision_mask = 3
 script = ExtResource("3_s6w2m")
 
 [node name="Line2D" type="Line2D" parent="RayCast2D"]
+visible = false
 rotation = 0.00174533
+scale = Vector2(1.171, 1)
 points = PackedVector2Array(0, 0, 0, -75)
 default_color = Color(0.705882, 0.282353, 0.262745, 1)
 
