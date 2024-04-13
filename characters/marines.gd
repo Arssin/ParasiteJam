@@ -34,6 +34,12 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if isNpcControlled:
+		%ProgressBar.visible = true
+		%ProgressBar.value = $mind_control.time_left
+	else:
+		%ProgressBar.visible = false
+	
 	if !move_on_path:
 		standingNpc = true
 		
@@ -55,6 +61,7 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+
 	
 	if isOnGround:
 		$catchArea/CollisionShape2D.disabled = true
