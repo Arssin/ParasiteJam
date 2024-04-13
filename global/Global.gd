@@ -33,6 +33,11 @@ func load_level(level_name: String):
 				var main = child.get_child(2)
 				level_instance = level_resource.instantiate()
 				main.add_child(level_instance)
+				
+
+func new_game():
+	get_tree().paused = false
+	Global.load_level("Level1")
 
 
 signal player_mind_controlling_call

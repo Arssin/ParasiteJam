@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Player
 
-var player_speed = 100
+var player_speed = 500
 var mouse_clicked = false
 var projectile := preload("res://characters/player_projectile.tscn")
 var shooted_pos
