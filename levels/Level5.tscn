@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpuglrfe2r1yc"]
+[gd_scene load_steps=12 format=3 uid="uid://dpuglrfe2r1yc"]
 
 [ext_resource type="Script" path="res://levels/Level5.gd" id="1_2p5qq"]
 [ext_resource type="PackedScene" uid="uid://b04pnj602sgdn" path="res://scenes/tile_map.tscn" id="2_m806f"]
 [ext_resource type="PackedScene" uid="uid://t1gtrdl6qhex" path="res://scenes/doors.tscn" id="2_mjfv3"]
+[ext_resource type="PackedScene" uid="uid://8h3r6edqj1xt" path="res://scenes/trap.tscn" id="2_yut8b"]
 [ext_resource type="PackedScene" uid="uid://ulroyeuyk226" path="res://characters/player.tscn" id="3_q03f8"]
 [ext_resource type="PackedScene" uid="uid://ovaevhdhmgd4" path="res://characters/marines.tscn" id="5_icgxp"]
 [ext_resource type="PackedScene" uid="uid://vbwh04xsowr1" path="res://scenes/levers.tscn" id="6_hxsy1"]
+[ext_resource type="PackedScene" uid="uid://clrte50v5ertq" path="res://scenes/laser.tscn" id="8_5q8fj"]
 
 [sub_resource type="Curve2D" id="Curve2D_i3vct"]
 _data = {
@@ -14,7 +16,10 @@ _data = {
 point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sofky"]
-size = Vector2(45, 23)
+size = Vector2(32, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2g0m"]
+size = Vector2(174, 39)
 
 [node name="Level5" type="Node2D"]
 script = ExtResource("1_2p5qq")
@@ -50,6 +55,8 @@ rotation = 3.14159
 position = Vector2(229, 56)
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 z_index = 1
@@ -57,9 +64,72 @@ position = Vector2(560, -6)
 shape = SubResource("RectangleShape2D_sofky")
 
 [node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(280, 135.5)
+shape = SubResource("RectangleShape2D_n2g0m")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(191, 288, 0, 288, 0, 317, 0, 352, 310, 352, 624, 352, 624, 193, 623, 17, 576, 16, 576, -18, 543, -17, 544, 16, 512, 16, 512, 288, 368, 288, 368, 16, 254, 16, 192, 16, 192, 288, 126, 254, 124, 12, 422, -58, 825, -29, 788, 225, 660, 490, 337, 485, -139, 375, -61, 227, 55, 68, 102, 245)
+
+[node name="trap" parent="." instance=ExtResource("2_yut8b")]
+position = Vector2(82, 298)
+
+[node name="trap2" parent="." instance=ExtResource("2_yut8b")]
+position = Vector2(102, 298)
+
+[node name="trap3" parent="." instance=ExtResource("2_yut8b")]
+position = Vector2(123, 298)
+
+[node name="trap4" parent="." instance=ExtResource("2_yut8b")]
+position = Vector2(145, 298)
+
+[node name="trap5" parent="." instance=ExtResource("2_yut8b")]
+position = Vector2(173, 298)
+
+[node name="trap6" parent="." instance=ExtResource("2_yut8b")]
+position = Vector2(81, 343)
+
+[node name="trap7" parent="." instance=ExtResource("2_yut8b")]
+position = Vector2(101, 343)
+
+[node name="trap8" parent="." instance=ExtResource("2_yut8b")]
+position = Vector2(122, 343)
+
+[node name="trap9" parent="." instance=ExtResource("2_yut8b")]
+position = Vector2(144, 343)
+
+[node name="trap10" parent="." instance=ExtResource("2_yut8b")]
+position = Vector2(172, 343)
+
+[node name="laser" parent="." instance=ExtResource("8_5q8fj")]
+position = Vector2(386, 338)
+target_pos = -200
+
+[node name="laser2" parent="." instance=ExtResource("8_5q8fj")]
+position = Vector2(499, 338)
+target_pos = -200
+
+[node name="laser3" parent="." instance=ExtResource("8_5q8fj")]
+position = Vector2(526, 113)
+rotation = 1.5708
+target_pos = -200
+
+[node name="Marines3" parent="." instance=ExtResource("5_icgxp")]
+position = Vector2(599, 317)
+
+[node name="Marines4" parent="." instance=ExtResource("5_icgxp")]
+position = Vector2(536, 146)
+
+[node name="laser4" parent="." instance=ExtResource("8_5q8fj")]
+position = Vector2(526, 236)
+rotation = 1.5708
+target_pos = -200
+
+[connection signal="used_lever" from="levers" to="." method="_on_levers_used_lever"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
