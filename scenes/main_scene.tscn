@@ -53,6 +53,28 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0352941, 0.0352941, 0.0352941, 1)
 
+[node name="Label" type="Label" parent="Menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -132.5
+offset_top = -29.2
+offset_right = 132.5
+offset_bottom = -6.20001
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.333333, 0.843137, 0.988235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.466667, 0.556863, 0.792157, 1)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 3
+text = "Created for Theana Game Jam #18 by Arssin"
+horizontal_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
 layout_mode = 1
 anchors_preset = 13
@@ -144,7 +166,7 @@ position = Vector2(226, 23)
 texture = ExtResource("4_duwta")
 
 [node name="Sss9" type="Sprite2D" parent="Menu"]
-position = Vector2(452, 308)
+position = Vector2(466, 293)
 texture = ExtResource("4_duwta")
 
 [node name="Sss10" type="Sprite2D" parent="Menu"]
@@ -152,7 +174,7 @@ position = Vector2(442, 184)
 texture = ExtResource("4_duwta")
 
 [node name="Sss11" type="Sprite2D" parent="Menu"]
-position = Vector2(328, 322)
+position = Vector2(333, 313)
 texture = ExtResource("4_duwta")
 
 [node name="Button" type="Button" parent="Menu"]
@@ -162,6 +184,14 @@ offset_top = 47.0
 offset_right = 68.0
 offset_bottom = 73.0
 text = "MUSIC OFF"
+
+[node name="Label2" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = -232.0
+offset_top = 100.0
+offset_right = -49.0
+offset_bottom = 123.0
+text = "FIND me on ichi or twitter"
 
 [node name="Main" type="Node2D" parent="."]
 unique_name_in_owner = true
