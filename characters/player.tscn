@@ -181,7 +181,7 @@ libraries = {
 }
 
 [node name="die" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.7
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0

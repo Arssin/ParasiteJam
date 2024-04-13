@@ -92,7 +92,8 @@ func _on_levers_used_lever(_value) -> void:
 	
 func die() -> void:
 	$die.start()
-	queue_free()
+	set_process(false)
+	set_physics_process(false)
 	
 
 
@@ -110,4 +111,5 @@ func _on_die_timeout() -> void:
 				if scenes.name == "Lost":
 					scenes.visible = true
 					get_tree().paused = true
+	queue_free()
 
