@@ -361,7 +361,7 @@ text = "Back to menu
 
 [node name="Lost" type="Control" parent="."]
 unique_name_in_owner = true
-process_mode = 2
+process_mode = 3
 visible = false
 z_index = 8
 layout_mode = 1
@@ -586,6 +586,7 @@ text = "BACK TO MENU"
 
 [node name="Infos" type="Control" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 visible = false
 z_index = 11
 layout_mode = 1
