@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dcr4k18a0edrr"]
+[gd_scene load_steps=16 format=3 uid="uid://dcr4k18a0edrr"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_26uua"]
 [ext_resource type="Theme" uid="uid://cxlnedliu6hhh" path="res://ui/theme.tres" id="2_7oyh3"]
@@ -66,6 +66,16 @@ Button/styles/focus = SubResource("StyleBoxFlat_80eag")
 Button/styles/hover = SubResource("StyleBoxFlat_rbgvt")
 Button/styles/normal = SubResource("StyleBoxFlat_tmaoo")
 Button/styles/pressed = SubResource("StyleBoxFlat_tmaoo")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26hcf"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2g5g"]
+bg_color = Color(0.152941, 0.298039, 0.443137, 1)
+border_width_left = 3
+border_width_right = 3
+border_width_bottom = 5
+border_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -254,6 +264,16 @@ offset_left = 24.0
 offset_top = 14.0
 offset_right = 62.0
 offset_bottom = 40.0
+
+[node name="Button_Info" type="Button" parent="Menu"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 24.75
+offset_top = 58.0
+offset_right = 63.75
+offset_bottom = 91.0
+theme = ExtResource("2_7oyh3")
+text = "i"
 
 [node name="Main" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -527,6 +547,7 @@ offset_right = 216.0
 offset_bottom = 128.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_26hcf")
 
 [node name="MarginContainer" type="MarginContainer" parent="Pause/Panel2"]
 layout_mode = 1
@@ -563,12 +584,125 @@ layout_mode = 2
 theme = ExtResource("2_7oyh3")
 text = "BACK TO MENU"
 
+[node name="Infos" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 11
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Infos"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Infos/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = -149.0
+offset_right = 197.0
+offset_bottom = 149.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p2g5g")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Infos/Panel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="Title" type="Label" parent="Infos/Panel/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.858824, 0.807843, 0.635294, 1)
+theme_override_colors/font_outline_color = Color(0.388235, 0.388235, 0.388235, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 30
+text = "CONTROLS
+"
+
+[node name="HBoxContainer" type="GridContainer" parent="Infos/Panel/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 60
+theme_override_constants/v_separation = 25
+columns = 2
+
+[node name="1" type="Label" parent="Infos/Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "MOVEMENT"
+
+[node name="Label22" type="Label" parent="Infos/Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "WASD/Arrows"
+
+[node name="2" type="Label" parent="Infos/Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "USE JUMP SKILL
+"
+
+[node name="Label23" type="Label" parent="Infos/Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "LEFT MOUSE"
+
+[node name="LabelX" type="Label" parent="Infos/Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "END BODY CONTROL"
+
+[node name="3" type="Label" parent="Infos/Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "RIGHT MOUSE"
+
+[node name="LabelY" type="Label" parent="Infos/Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "INTERACT"
+
+[node name="4" type="Label" parent="Infos/Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "F"
+
+[node name="Close_controls" type="Button" parent="Infos/Panel/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 14.0
+offset_top = 11.0
+offset_right = 49.0
+offset_bottom = 42.0
+theme = ExtResource("2_7oyh3")
+text = "X"
+
 [connection signal="pressed" from="Menu/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Menu/Music Button" to="." method="_on_music_button_pressed"]
+[connection signal="pressed" from="Menu/Button_Info" to="." method="_on_button_info_pressed"]
 [connection signal="pressed" from="Win/Panel2/MarginContainer/VBoxContainer/Back to menu" to="." method="_on_back_to_menu_pressed"]
 [connection signal="pressed" from="Lost/Panel2/MarginContainer/VBoxContainer/btnLabel" to="." method="_on_btn_label_pressed"]
 [connection signal="pressed" from="Creds/Panel/Panel/BtnCreds" to="." method="_on_btn_creds_pressed"]
 [connection signal="pressed" from="Pause/Panel2/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause/Panel2/MarginContainer/VBoxContainer/ToMenu" to="." method="_on_to_menu_pressed"]
+[connection signal="pressed" from="Infos/Panel/Panel/Close_controls" to="." method="_on_close_controls_pressed"]

@@ -112,3 +112,11 @@ func _on_to_menu_pressed() -> void:
 	time = 0
 	%Pause.visible = false
 	get_tree().paused = true
+
+
+func _on_close_controls_pressed() -> void:
+	%Infos.visible = false
+
+
+func _on_button_info_pressed() -> void:
+	%Infos.visible = true
