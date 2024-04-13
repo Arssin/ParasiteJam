@@ -131,7 +131,6 @@ target_pos = -600
 [node name="laser12" parent="." instance=ExtResource("5_fddic")]
 position = Vector2(460, 30)
 rotation = 3.14159
-laser_length = 3.0
 target_pos = -600
 
 [node name="laser13" parent="." instance=ExtResource("5_fddic")]

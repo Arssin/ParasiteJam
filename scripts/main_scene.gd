@@ -39,8 +39,7 @@ func _process(delta: float) -> void:
 		minutes = fmod(time,3600) / 60
 		var formatedSec = "%02d" % seconds
 		%Time.text = "TIME " + str(minutes) + ":" + formatedSec
-		if $Win.visible:
-			$Win/Panel2/MarginContainer/VBoxContainer/LabelTajm.text = "YOUR TIME:" + " " + str(minutes) + ":" + formatedSec
+		$Win/Panel2/MarginContainer/VBoxContainer/LabelTajm.text = "YOUR TIME:" + " " + str(minutes) + ":" + formatedSec
 		
 
 
@@ -65,7 +64,7 @@ func _on_back_to_menu_pressed() -> void:
 	get_tree().paused = true
 	$Win.visible = false
 	%Menu.visible = true
-	#get_tree().change_scene_to_file("res://scenes/main_scene.tscn")
+	time = 0
 
 
 
@@ -76,12 +75,12 @@ func _on_music_button_pressed() -> void:
 		isMusicOn = false
 		%"Music Button".icon = music_off
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), true)
 	else: 
 		isMusicOn = true
 		%"Music Button".icon = music_on
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("Sfx"), false)
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), false)
 
 
 func _on_exit_pressed() -> void:

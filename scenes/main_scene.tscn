@@ -329,6 +329,7 @@ Thanks for playing!"
 horizontal_alignment = 1
 
 [node name="LabelTajm" type="Label" parent="Win/Panel2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 horizontal_alignment = 1
 

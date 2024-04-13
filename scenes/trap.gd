@@ -15,6 +15,14 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		$AnimatedSprite2D.play("default")
 		body.die()
-		
-	if body is Enemy:
+	elif body is Enemy && body.isNpcControlled:
+		$AnimatedSprite2D.play("default")
+		var childs = get_parent().get_children()
+		for ch in childs:
+			if ch.name == "Player":
+				ch.die()
 		body.queue_free()
+	else:
+		$AnimatedSprite2D.play("default")
+		body.queue_free()
+

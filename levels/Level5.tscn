@@ -33,7 +33,7 @@ layer_0/tile_data = PackedInt32Array(-4, 131072, 3, 65532, 131072, 3, 131068, 13
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("3_q03f8")]
-position = Vector2(31, 322)
+position = Vector2(17, 319)
 
 [node name="Marines15" parent="." instance=ExtResource("5_icgxp")]
 position = Vector2(305, 63)

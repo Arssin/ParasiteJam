@@ -9,6 +9,9 @@ var shooted_pos
 var body_controlling = false
 @onready var anim = $AnimationPlayer
 
+var jump_player_sound = load("res://assets/player_jump.wav")
+var die_sound = load("res://assets/death.wav")
+
 func _ready() -> void:
 	anim.play("idle")
 	Global.player_mind_controlling_stop.connect(_on_stop_controlling)
@@ -39,6 +42,14 @@ func _input(_event: InputEvent) -> void:
 	
 	if !mouse_clicked && !Global.player_mind_controlling && Global.amount_of_shoots > 0:
 		if Input.is_action_just_pressed("left_mouse"):
+			var childs = get_tree().root.get_children()
+			for ch in childs:
+				if ch.name == "MainScene":
+					var childrens = ch.get_children()
+					for i in childrens:
+						if i.name == "SFX":
+							i.stream = jump_player_sound
+							i.play()
 			Global.amount_of_shoots -= 1
 			var mouse_position = get_global_mouse_position()
 			shooted_pos = (mouse_position - global_position).normalized()
@@ -94,6 +105,14 @@ func _on_levers_used_lever(_value) -> void:
 func die() -> void:
 	$die.start()
 	$Sprite2D.visible = false
+	var childs = get_tree().root.get_children()
+	for ch in childs:
+		if ch.name == "MainScene":
+			var childrens = ch.get_children()
+			for i in childrens:
+				if i.name == "SFX":
+					i.stream = die_sound
+					i.play()
 	set_process(false)
 	set_physics_process(false)
 	
