@@ -61,3 +61,15 @@ func _on_music_button_pressed() -> void:
 		%"Music Button".icon = music_on
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Sfx"), false)
+
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()
+
+
+func _on_btn_creds_pressed() -> void:
+	%Creds.visible = false
+
+
+func _on_credits_pressed() -> void:
+	%Creds.visible = true
