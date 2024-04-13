@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 			positionToReturn = move_on_path.global_position
 			
 			
-	if !chase_player && standingNpc:
+	if !chase_player && standingNpc && !isNpcControlled && !isOnGround:
 		velocity = (previous_global_position - position).normalized() * enemy_speed
 		move_and_collide(velocity * delta)
 
