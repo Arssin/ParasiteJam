@@ -126,8 +126,10 @@ func _input(_event: InputEvent) -> void:
 		
 		if input_direction:
 			velocity = input_direction * enemy_speed
+			%AnimationPlayer.play("run")
 		else:
 			velocity = input_direction * 0
+			%AnimationPlayer.play("idle")
 		
 		if Input.is_action_just_pressed("right_mouse"):
 			isOnGround = true

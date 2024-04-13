@@ -94,7 +94,6 @@ func _on_levers_used_lever(_value) -> void:
 func die() -> void:
 	$die.start()
 	$Sprite2D.visible = false
-	Global.player_mind_controlling = false
 	set_process(false)
 	set_physics_process(false)
 	

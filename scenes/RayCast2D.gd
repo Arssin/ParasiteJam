@@ -20,7 +20,6 @@ func _physics_process(delta: float) -> void:
 	var cast_point := target_position
 	force_raycast_update()
 	
-	#collision_particles_2.emitting = is_colliding()
 	
 	if is_colliding():
 		cast_point = to_local(get_collision_point())
@@ -28,17 +27,27 @@ func _physics_process(delta: float) -> void:
 		
 		if collider is Player:
 			collider.die()
-		
-		if collider is Enemy:
-			print('essa')
+		elif collider is Enemy && collider.isNpcControlled:
+			var child = get_tree().root.get_children()
+			for i in child:
+				if i.name == "MainScene":
+					var sceneMain = i.get_children()
+					for k in sceneMain:
+						if k.name == "Main":
+							var zet = k.get_children()
+							for z in zet:
+								if z.name == "Level4" or z.name == "Level5" or z.name == "Level7":
+									var level = z.get_children()
+									for x in level:
+										if x.name == "Player":
+											x.die()
+			collider.queue_free()
+		elif collider is Enemy:
 			collider.queue_free()
 		
-		#collision_particles_2.global_rotation = get_collision_normal().angle()
-		#collision_particles_2.position = cast_point
-	
+
 	$Line2D.points[1] = cast_point
-	#beam_particle_2d.position = cast_point * 0.5
-	#beam_particle_2d.process_material.emission_box_extents.x = cast_point.length() * 0.5
+
 	
 
 		

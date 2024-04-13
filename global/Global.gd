@@ -32,7 +32,6 @@ func load_level(level_name: String):
 	unload_level()
 	var level_path := "res://levels/%s.tscn" % level_name
 	var level_resource := load(level_path)
-	print(level_resource, level_path)
 	if (level_resource):
 		var childrens = get_tree().root.get_children()
 		for child in childrens:
@@ -44,6 +43,7 @@ func load_level(level_name: String):
 
 func new_game():
 	get_tree().paused = false
+	Global.player_mind_controlling = false
 	Global.amount_of_shoots = 4
 	Global.load_level("Level1")
 
