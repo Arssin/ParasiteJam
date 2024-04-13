@@ -348,7 +348,7 @@ texture = ExtResource("2_1ct2w")
 6:6/0 = 0
 6:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:6/0/physics_layer_0/angular_velocity = 0.0
-6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.125, 8, -5.875, 8, 5.75, -8, 6)
+6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.125, 8, -6.14212, 8, 5.90588, -8, 6)
 7:6/0 = 0
 7:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:6/0/physics_layer_0/angular_velocity = 0.0
@@ -441,7 +441,7 @@ target_pos = -200
 position = Vector2(336, 42)
 
 [node name="Marines2" parent="." instance=ExtResource("5_wo1mu")]
-position = Vector2(471, 100)
+position = Vector2(485, 79)
 
 [node name="laser10" parent="." instance=ExtResource("4_a0iax")]
 position = Vector2(102, 215)
@@ -455,3 +455,9 @@ target_pos = -200
 position = Vector2(227, 112)
 rotation = 1.5708
 target_pos = -200
+
+[node name="Marines3" parent="." instance=ExtResource("5_wo1mu")]
+position = Vector2(381, 110)
+
+[node name="Marines4" parent="." instance=ExtResource("5_wo1mu")]
+position = Vector2(424, 42)
