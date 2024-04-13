@@ -20,3 +20,8 @@ func _process(delta: float) -> void:
 func _on_start_game_pressed() -> void:
 	%Menu.visible = false
 	Global.load_level("Level1")
+
+
+func _on_label_3_pressed() -> void:
+	%Menu.visible = true
+	$Win.visible = false
