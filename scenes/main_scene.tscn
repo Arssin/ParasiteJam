@@ -154,8 +154,20 @@ texture = ExtResource("4_duwta")
 position = Vector2(328, 322)
 texture = ExtResource("4_duwta")
 
+[node name="Button" type="Button" parent="Menu"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 47.0
+offset_right = 68.0
+offset_bottom = 73.0
+text = "MUSIC OFF"
+
 [node name="Main" type="Node2D" parent="."]
 unique_name_in_owner = true
+
+[node name="MUSIC" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Win" type="Control" parent="."]
 process_mode = 2
