@@ -147,4 +147,7 @@ collision_mask = 2
 position = Vector2(608.5, 14)
 shape = SubResource("RectangleShape2D_oqumh")
 
+[node name="Marines323534" parent="." instance=ExtResource("6_jj4eo")]
+position = Vector2(430, 205)
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

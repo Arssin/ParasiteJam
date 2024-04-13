@@ -3,6 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://bb4hix8x7d8wo" path="res://assets/MapPrototype.png" id="1_avdd5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8n6c"]
+bg_color = Color(0.521569, 0.521569, 0.521569, 1)
+border_width_bottom = 2
+border_color = Color(0.27451, 0.27451, 0.27451, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Press" type="Control"]
 custom_minimum_size = Vector2(90, 22)
@@ -14,12 +21,15 @@ offset_right = -544.0
 offset_bottom = -338.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -5.0
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_e8n6c")
@@ -31,10 +41,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel/MarginContainer"]
-position = Vector2(72, 11.5)
+position = Vector2(75, 16)
 scale = Vector2(1.92188, 1.6875)
 texture = ExtResource("1_avdd5")
 hframes = 8
@@ -43,5 +52,6 @@ frame = 15
 
 [node name="Label" type="Label" parent="Panel/MarginContainer"]
 layout_mode = 2
-text = "Press"
+theme_override_font_sizes/font_size = 18
+text = " PRESS"
 vertical_alignment = 1

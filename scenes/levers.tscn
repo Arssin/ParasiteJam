@@ -59,9 +59,9 @@ shape = SubResource("CircleShape2D_rfmac")
 unique_name_in_owner = true
 visible = false
 offset_left = -12.2222
-offset_top = -14.4444
+offset_top = -11.1111
 offset_right = 77.7778
-offset_bottom = 7.55556
+offset_bottom = 10.8889
 scale = Vector2(0.3, 0.3)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

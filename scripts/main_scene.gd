@@ -9,26 +9,42 @@ extends Control
 @onready var music_off = load("res://assets/music off.png")
 @onready var music_on = load("res://assets/music on.png")
 
+var time: float = 0.0
+var minutes: int = 0
+var seconds: int = 0
+
 var isMusicOn = true
 
 var level_instance
 
 func _ready() -> void:
 	Global.new_amound_of_shoots.connect(_change_values_shoots)
-	%"Amount of shots".text = str(Global.amount_of_shoots)
+	%"Amount of shots".text = "Body control projectiles left:" + " " + str(Global.amount_of_shoots)
 	
 	if isMusicOn:
 		%"Music Button".icon = music_on
 	else:
 		%"Music Button".icon = music_off
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
-	pass
+	if !%Menu.visible:
+		%Time.visible = true
+	else:
+		%Time.visible = false
+		
+	if %Time.visible:
+		time += delta
+		seconds = fmod(time,60)
+		minutes = fmod(time,3600) / 60
+		var formatedSec = "%02d" % seconds
+		%Time.text = "TIME " + str(minutes) + ":" + formatedSec
+		
+
 
 
 func _change_values_shoots(value):
-	%"Amount of shots".text = str(value)
+	%"Amount of shots".text = "Body control projectiles left:" + " " + str(value)
 
 
 func _on_start_game_pressed() -> void:
@@ -82,6 +98,7 @@ func _on_btn_label_pressed() -> void:
 	get_tree().paused = true
 	%Lost.visible = false
 	%Menu.visible = true
+	time = 0
 
 
 func _on_resume_pressed() -> void:
@@ -91,5 +108,6 @@ func _on_resume_pressed() -> void:
 
 func _on_to_menu_pressed() -> void:
 	%Menu.visible = true
+	time = 0
 	%Pause.visible = false
 	get_tree().paused = true
