@@ -19,6 +19,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_2_body_entered(body: Node2D) -> void:
 	if body is Player:
 		body.die()
+	elif body is Enemy && body.isNpcControlled:
+		$Player.die()
+		body.queue_free()
+	else:
+		body.queue_free()
 
 
 func _on_levers_used_lever(value: Variant) -> void:

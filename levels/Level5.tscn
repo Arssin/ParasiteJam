@@ -9,17 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://vbwh04xsowr1" path="res://scenes/levers.tscn" id="6_hxsy1"]
 [ext_resource type="PackedScene" uid="uid://clrte50v5ertq" path="res://scenes/laser.tscn" id="8_5q8fj"]
 
-[sub_resource type="Curve2D" id="Curve2D_i3vct"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 6.25, -11.875, 0, 0, 0, 0, -77.5, -11.875, 0, 0, 0, 0, 6.875, -11.875)
-}
-point_count = 3
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sofky"]
 size = Vector2(32, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n2g0m"]
 size = Vector2(174, 39)
+
+[sub_resource type="Curve2D" id="Curve2D_alw36"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 332, 223, 0, 0, 0, 0, 223, 187, 0, 0, 0, 0, 342, 190, 0, 0, 0, 0, 332, 223)
+}
+point_count = 4
 
 [node name="Level5" type="Node2D"]
 script = ExtResource("1_2p5qq")
@@ -38,15 +38,6 @@ position = Vector2(31, 322)
 [node name="Marines15" parent="." instance=ExtResource("5_icgxp")]
 position = Vector2(305, 63)
 
-[node name="Path2D" type="Path2D" parent="."]
-position = Vector2(333, 211)
-scale = Vector2(1.6, 1.6)
-curve = SubResource("Curve2D_i3vct")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(6.25, -11.875)
-rotation = 3.14159
-
 [node name="levers" parent="." instance=ExtResource("6_hxsy1")]
 position = Vector2(229, 56)
 
@@ -61,7 +52,7 @@ shape = SubResource("RectangleShape2D_sofky")
 
 [node name="Area2D2" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(280, 135.5)
@@ -115,8 +106,8 @@ position = Vector2(526, 113)
 rotation = 1.5708
 target_pos = -200
 
-[node name="Marines12" parent="." node_paths=PackedStringArray("move_on_path") instance=ExtResource("5_icgxp")]
-position = Vector2(343, 192)
+[node name="Marines126" parent="." node_paths=PackedStringArray("move_on_path") instance=ExtResource("5_icgxp")]
+position = Vector2(331, 222)
 move_on_path = NodePath("../Path2D/PathFollow2D")
 movement_speed = 0.4
 
@@ -130,6 +121,13 @@ position = Vector2(536, 146)
 position = Vector2(526, 236)
 rotation = 1.5708
 target_pos = -200
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_alw36")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(332, 223)
+rotation = -2.8226
 
 [connection signal="used_lever" from="levers" to="." method="_on_levers_used_lever"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
