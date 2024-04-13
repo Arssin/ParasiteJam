@@ -19,6 +19,8 @@ var positionToReturn
 
 @onready var rot_start = rotation
 
+var catch_sound = load("res://assets/jump.wav")
+var marine_dead = load("res://assets/marine_death.wav")
 
 var colorCircleClassic = Color(0.741176, 0.717647, 0.419608, 0.3)
 var colorCircleAlert = Color(0.3, 0.5, 1, 0.3)
@@ -191,6 +193,14 @@ func _on_area_body_exited(body: Node2D) -> void:
 
 func _on_catch_area_body_entered(body: Node2D) -> void:
 	if body is Player:
+		var childs = get_tree().root.get_children()
+		for ch in childs:
+			if ch.name == "MainScene":
+				var childrens = ch.get_children()
+				for i in childrens:
+					if i.name == "SFX":
+						i.stream = catch_sound
+						i.play()
 		%AnimationPlayer.play("catch")
 		isOnGround = true
 
@@ -212,6 +222,17 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		queue_redraw()
 	elif anim_name == "be_down":
 		isOnGround = true
+
+func marine_die():
+	var childs = get_tree().root.get_children()
+	for ch in childs:
+		if ch.name == "MainScene":
+			var childrens = ch.get_children()
+			for i in childrens:
+				if i.name == "SFX":
+					i.stream = marine_dead
+					i.play()
+	queue_free()
 
 
 func _on_animation_player_current_animation_changed(name: String) -> void:

@@ -23,7 +23,7 @@ func _on_area_2d_2_body_entered(body: Node2D) -> void:
 		$Player.die()
 		body.queue_free()
 	else:
-		body.queue_free()
+		body.marine_die()
 
 
 func _on_levers_used_lever(value: Variant) -> void:

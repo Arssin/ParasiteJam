@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 											x.die()
 			collider.queue_free()
 		elif collider is Enemy:
-			collider.queue_free()
+			collider.marine_die()
 		
 
 	$Line2D.points[1] = cast_point
