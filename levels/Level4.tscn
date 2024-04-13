@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bu0351jte1dn"]
+[gd_scene load_steps=11 format=3 uid="uid://bu0351jte1dn"]
 
 [ext_resource type="Texture2D" uid="uid://dajhabvgmuhto" path="res://assets/MapPrototype-sheet3.png" id="1_h7k5m"]
+[ext_resource type="Script" path="res://levels/Level4.gd" id="1_i8gx4"]
 [ext_resource type="Texture2D" uid="uid://boa68vwdqxyoa" path="res://assets/MapPrototype-sheet4.png" id="2_1ct2w"]
 [ext_resource type="PackedScene" uid="uid://ulroyeuyk226" path="res://characters/player.tscn" id="3_i5qh2"]
 [ext_resource type="PackedScene" uid="uid://clrte50v5ertq" path="res://scenes/laser.tscn" id="4_a0iax"]
@@ -376,7 +377,11 @@ physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_h6f4d")
 sources/1 = SubResource("TileSetAtlasSource_mlql7")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4l0dt"]
+size = Vector2(21, 57)
+
 [node name="Level4" type="Node2D"]
+script = ExtResource("1_i8gx4")
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(1.2, 1.2)
@@ -461,3 +466,13 @@ position = Vector2(381, 110)
 
 [node name="Marines4" parent="." instance=ExtResource("5_wo1mu")]
 position = Vector2(424, 42)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(629.5, 182.5)
+shape = SubResource("RectangleShape2D_4l0dt")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
