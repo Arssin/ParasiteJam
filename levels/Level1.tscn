@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://nqkcepm4sjb1"]
+[gd_scene load_steps=12 format=3 uid="uid://nqkcepm4sjb1"]
 
 [ext_resource type="Script" path="res://levels/Level1.gd" id="1_2eib0"]
 [ext_resource type="Texture2D" uid="uid://bb4hix8x7d8wo" path="res://assets/MapPrototype.png" id="1_t4ppf"]
@@ -130,6 +130,13 @@ texture = ExtResource("1_t4ppf")
 [sub_resource type="TileSet" id="TileSet_tsgnm"]
 sources/0 = SubResource("TileSetAtlasSource_dtjrj")
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_brqph"]
+radius = 19.0
+height = 50.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3r2g"]
+size = Vector2(33, 19)
+
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_2eib0")
 
@@ -155,10 +162,26 @@ position = Vector2(258, 84)
 position = Vector2(342, 184)
 rotation = 3.14159
 
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(311, 69)
+shape = SubResource("CapsuleShape2D_brqph")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(199, 108, 190, 184, 229, 204, 398, 216, 438, 207, 474, 152, 461, 35, 415, 17, 301, 21, 250, 22, 200, 49, 195, 88, 212, 118, 240, 175, 240, 73, 240, 48, 323, 48, 400, 48, 400, 176, 358, 177, 359, 206, 326, 206, 326, 176, 241, 176, 215, 152, 221, 125)
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(342.5, 196.5)
+shape = SubResource("RectangleShape2D_l3r2g")
+
 [connection signal="used_lever" from="levers" to="." method="_on_levers_used_lever"]
 [connection signal="used_lever" from="levers" to="Player" method="_on_levers_used_lever"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

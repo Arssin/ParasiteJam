@@ -13,5 +13,4 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
-		$AnimatedSprite2D.play("default")
-		body.die()
+		Global.load_level("Level3")

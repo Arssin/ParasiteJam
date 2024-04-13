@@ -18,3 +18,8 @@ func _on_levers_used_lever(value) -> void:
 	else:
 		$doors.anim.play("close")
 		$doors.collision.disabled = false
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Player:
+		Global.load_level("Level2")

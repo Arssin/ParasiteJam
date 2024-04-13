@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 		velocity = (player.position - position).normalized() * enemy_speed
 		move_and_collide(velocity * delta)
 		if !standingNpc:
-			positionToReturn = move_on_path.position
+			positionToReturn = move_on_path.global_position
 			
 			
 	if !chase_player && standingNpc:
@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
 	if isPatrolling && move_on_path && !chase_player && !isNpcControlled && !isReturning && !isOnGround:
 		%AnimationPlayer.play("run")
 		move_on_path.progress += movement_speed
-		global_position = move_on_path.position
+		global_position = move_on_path.global_position
 		
 		var current_global_position = global_position
 		
