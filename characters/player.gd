@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 		if anim.current_animation != "using":
 			anim.play("fly")
 		velocity = shooted_pos * 200
+		
 	
 	
 	if position_mouse_x < global_position.x:
@@ -42,6 +43,7 @@ func _input(_event: InputEvent) -> void:
 			var mouse_position = get_global_mouse_position()
 			shooted_pos = (mouse_position - global_position).normalized()
 			$PlayerCollision.disabled = true
+			$EnvCheck/Env.disabled = false
 			mouse_clicked = true
 
 	if !mouse_clicked:
@@ -78,6 +80,7 @@ func _on_stop_controlling():
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fly":
+		$EnvCheck/Env.disabled = true
 		anim.play("idle")
 
 
@@ -96,3 +99,8 @@ func die() -> void:
 				if scenes.name == "Lost":
 					scenes.visible = true
 	queue_free()
+
+
+func _on_env_check_body_entered(body: Node2D) -> void:
+	if body:
+		die()

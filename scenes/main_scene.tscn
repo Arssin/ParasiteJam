@@ -323,6 +323,7 @@ text = "Back to menu
 unique_name_in_owner = true
 process_mode = 2
 visible = false
+z_index = 8
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ulroyeuyk226"]
+[gd_scene load_steps=12 format=3 uid="uid://ulroyeuyk226"]
 
 [ext_resource type="Script" path="res://characters/player.gd" id="1_ja8v1"]
 [ext_resource type="Texture2D" uid="uid://cwi8r1kcgthma" path="res://assets/Hero.png" id="2_u17ks"]
@@ -150,6 +150,10 @@ _data = {
 radius = 5.83333
 height = 16.5631
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_28jh6"]
+radius = 3.33333
+height = 6.66667
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 scale = Vector2(1.2, 1.2)
@@ -186,5 +190,14 @@ rotation = 1.5708
 scale = Vector2(0.805, 0.805)
 shape = SubResource("CapsuleShape2D_3djjh")
 
+[node name="EnvCheck" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="Env" type="CollisionShape2D" parent="EnvCheck"]
+position = Vector2(0, 0.833333)
+shape = SubResource("CapsuleShape2D_28jh6")
+disabled = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="EnvCheck" to="." method="_on_env_check_body_entered"]
